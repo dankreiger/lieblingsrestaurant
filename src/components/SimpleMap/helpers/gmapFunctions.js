@@ -26,7 +26,11 @@ export const apiIsLoaded = (map, maps, places) => {
     map.fitBounds(bounds);
     // Bind the resize listener
     bindResizeListener(map, maps, bounds);
-    map.setZoom(Math.min(map.getZoom(), 12));
+
+    // Don't zoom in too closely for 1 item
+    if (places.length === 1) {
+      map.setZoom(Math.min(map.getZoom(), 12));
+    }
   }
 };
 
