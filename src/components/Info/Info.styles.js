@@ -13,7 +13,6 @@ export const FavoritesRow = styled(Row)`
   .info-content-wrapper {
     display: flex;
     max-height: 90px;
-    justify-content: space-between;
     img {
       width: 20%;
       object-fit: cover;

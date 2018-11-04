@@ -1,6 +1,6 @@
 import React from 'react';
 import { arrayOf, shape, string } from 'prop-types';
-import { Col, Row, ListGroup, ListGroupItem, Badge } from 'reactstrap';
+import { Col, Row, ListGroup, ListGroupItem } from 'reactstrap';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { InfoContainer, FavoritesRow, AvgRating } from './Info.styles';

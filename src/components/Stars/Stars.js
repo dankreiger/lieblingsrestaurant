@@ -1,39 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StarContainer } from './Stars.styles';
 
-const Stars = () => {
+const showStars = (setRating, i) => {
   return (
-    <StarContainer className="stars" data-stars={1}>
-      <svg height={25} width={23} className="star rating" data-rating={1}>
-        <polygon
-          points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78"
-          style={{ fillRule: 'nonzero' }}
-        />
-      </svg>
-      <svg height={25} width={23} className="star rating" data-rating={2}>
-        <polygon
-          points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78"
-          style={{ fillRule: 'nonzero' }}
-        />
-      </svg>
-      <svg height={25} width={23} className="star rating" data-rating={3}>
-        <polygon
-          points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78"
-          style={{ fillRule: 'nonzero' }}
-        />
-      </svg>
-      <svg height={25} width={23} className="star rating" data-rating={4}>
-        <polygon
-          points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78"
-          style={{ fillRule: 'nonzero' }}
-        />
-      </svg>
-      <svg height={25} width={23} className="star rating" data-rating={5}>
-        <polygon
-          points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78"
-          style={{ fillRule: 'nonzero' }}
-        />
-      </svg>
+    <svg
+      height={25}
+      width={23}
+      className="star rating"
+      data-rating={i}
+      onClick={() => setRating(i)}
+    >
+      <polygon
+        points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78"
+        style={{ fillRule: 'nonzero' }}
+      />
+    </svg>
+  );
+};
+
+const Stars = () => {
+  const [rating, setRating] = useState(1);
+  return (
+    <StarContainer className="stars" data-stars={rating}>
+      {[1, 2, 3, 4, 5].map(i => showStars(setRating, i))}
     </StarContainer>
   );
 };
