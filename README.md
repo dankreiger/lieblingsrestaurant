@@ -1,4 +1,6 @@
+
 [![Build Status](https://travis-ci.org/dankreiger/lieblingsrestaurant.svg?branch=master)](https://travis-ci.org/dankreiger/lieblingsrestaurant)
+
 
 - [Restaurant Finder](#restaurant-finder)
     - [Prerequisites](#prerequisites)
