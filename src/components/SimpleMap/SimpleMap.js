@@ -1,6 +1,6 @@
 /*global google */
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import GoogleMapReact from 'google-map-react';
 import { apiIsLoaded, appendGmapScript } from './helpers/gmapFunctions';
@@ -9,7 +9,7 @@ import MapMarker from '../MapMarker/MapMarker';
 import { SearchInput } from './SimpleMap.styles';
 import { BERLIN } from '../../constants';
 
-class SimpleMap extends Component {
+class SimpleMap extends PureComponent {
   state = {
     places: [],
     currentMapInfo: null,
@@ -34,16 +34,17 @@ class SimpleMap extends Component {
     this.setState({ currentMapInfo: { map, maps, places } });
   };
 
-  handleSuggestSelect = place => {
-    if (!place) {
+  handleSuggestSelect = newPlace => {
+    if (!newPlace) {
       return;
     }
     const { map, maps, places } = this.state.currentMapInfo;
-    const newPlaces = [...places, place];
 
-    this.setState({ places: newPlaces }, () => {
-      this.handleMapInstance(map, maps, this.state.places);
-    });
+    if (!places.some(place => place.placeId === newPlace.placeId)) {
+      this.setState({ places: [...places, newPlace] }, () => {
+        this.handleMapInstance(map, maps, this.state.places);
+      });
+    }
   };
 
   render() {
@@ -56,7 +57,6 @@ class SimpleMap extends Component {
             onSuggestSelect={this.handleSuggestSelect}
             location={new google.maps.LatLng(BERLIN.lat, BERLIN.lng)}
             radius={2000}
-            // fixtures={fixtures}
             types={['establishment']}
           />
         )}

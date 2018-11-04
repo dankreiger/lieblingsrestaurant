@@ -27,7 +27,6 @@ export const apiIsLoaded = (map, maps, places) => {
     // Bind the resize listener
     bindResizeListener(map, maps, bounds);
     map.setZoom(Math.min(map.getZoom(), 12));
-    console.log(maps);
   }
 };
 

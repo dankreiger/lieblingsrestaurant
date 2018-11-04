@@ -1,15 +1,13 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Home from '../Home/Home';
 import Info from '../Info/Info';
 import { AppContainer } from './App.styles';
+import Navigation from '../Navigation/Navigation';
 
 const App = () => (
   <AppContainer>
-    <header>
-      <Link to="/">Home</Link>
-      <Link to="/info">Info</Link>
-    </header>
+    <Navigation />
     <main>
       <Route exact path="/" component={Home} />
       <Route exact path="/info" component={Info} />
