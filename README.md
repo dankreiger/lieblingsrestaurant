@@ -1,5 +1,9 @@
 [![Build Status](https://travis-ci.org/dankreiger/lieblingsrestaurant.svg?branch=master)](https://travis-ci.org/dankreiger/lieblingsrestaurant)
 
+[Live Demo](https://lieblingsrestaurant.surge.sh/)
+
+***
+
 - [Restaurant Finder](#restaurant-finder)
     - [Prerequisites](#prerequisites)
     - [Getting Started](#getting-started)
