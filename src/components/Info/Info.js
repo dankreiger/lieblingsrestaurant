@@ -16,7 +16,7 @@ const Info = ({ favorites, history }) => {
       {favorites && (
         <FavoritesRow>
           {sortedFavorites().map(favorite => (
-            <Col xs={12} md={6} lg={4} key={favorite.placeId}>
+            <Col xs={12} sm={6} md={4} xl={3} key={favorite.placeId}>
               <FavoritedItem
                 favoritesCount={favorites.length}
                 history={history}
