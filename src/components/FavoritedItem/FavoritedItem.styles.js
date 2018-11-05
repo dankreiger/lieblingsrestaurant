@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Card } from 'reactstrap';
 
 export const FavoritedItemContainer = styled(Card)`
+  cursor: pointer;
   overflow: hidden;
   padding-bottom: 50%;
   .card-text {

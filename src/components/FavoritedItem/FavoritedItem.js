@@ -11,14 +11,24 @@ import Stars from '../Stars/Stars';
 
 function FavoritedItem({ favorite, favoritesCount, history, deleteFavorite }) {
   const handleDeleteFavorite = (e, favorite) => {
-    e.preventDefault();
+    e.stopPropagation();
     deleteFavorite(favorite);
     if (favoritesCount === 1) {
       history.push('/');
     }
   };
   return (
-    <FavoritedItemContainer inverse>
+    <FavoritedItemContainer
+      inverse
+      onClick={() =>
+        window.open(
+          favorite.gmaps && favorite.gmaps.url
+            ? favorite.gmaps.url
+            : 'https://www.google.de/',
+          '_blank'
+        )
+      }
+    >
       <CardImg width="100%" src={getPhoto(favorite)} alt="Card image cap" />
       <CardImgOverlay>
         {/* <CardTitle>Card Title</CardTitle> */}
@@ -35,7 +45,7 @@ function FavoritedItem({ favorite, favoritesCount, history, deleteFavorite }) {
           </Badge>
         </CardText>
         <FooterDiv>
-          <div className="d-flex flex-column align-items-center">
+          <div className="d-flex flex-column align-items-center pl-4 pb-2">
             <span>Your rating:</span>
             <Stars favorite={favorite} />
           </div>
@@ -53,9 +63,7 @@ function FavoritedItem({ favorite, favoritesCount, history, deleteFavorite }) {
 
 FavoritedItem.propTypes = {};
 
-const mapStateToProps = ({ favorites }) => ({
-  favorites: favorites
-});
+const mapStateToProps = ({ favorites }) => ({ favorites });
 
 export default connect(
   mapStateToProps,

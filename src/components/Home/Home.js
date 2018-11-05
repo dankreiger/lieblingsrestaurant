@@ -26,9 +26,7 @@ Home.propTypes = {
   )
 };
 
-const mapStateToProps = ({ favorites }) => ({
-  favorites: favorites
-});
+const mapStateToProps = ({ favorites }) => ({ favorites });
 
 export default connect(
   mapStateToProps,
