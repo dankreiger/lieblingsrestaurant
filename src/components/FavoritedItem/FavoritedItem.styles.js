@@ -4,9 +4,11 @@ import { Card } from 'reactstrap';
 export const FavoritedItemContainer = styled(Card)`
   cursor: pointer;
   overflow: hidden;
-  padding-bottom: 50%;
+  padding-bottom: 100%;
   .card-text {
     margin-bottom: 0;
+    font-size: 1.2em;
+    text-align: center;
   }
   &:hover {
     img {
@@ -21,9 +23,14 @@ export const FavoritedItemContainer = styled(Card)`
     left: 0;
     right: 0;
     object-fit: cover;
+    height: 100%;
   }
   .card-img-overlay {
     background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
