@@ -5,10 +5,11 @@ export const SearchInput = styled(Geosuggest)`
   &.geosuggest {
     font-size: 18px;
     font-size: 1rem;
-    position: relative;
-    width: 50%;
-    margin: 1em auto;
     text-align: left;
+    margin: 0 auto;
+    width: 100vw;
+    left: 0;
+    position: absolute;
   }
   .geosuggest__input {
     width: 100%;
@@ -70,4 +71,13 @@ export const SearchInput = styled(Geosuggest)`
   .geosuggest__item__matched-text {
     font-weight: bold;
   }
+`;
+
+export const MapContainer = styled.div`
+  height: calc(100vh - 104px);
+  width: 100vw;
+  position: fixed;
+  top: 104px;
+  z-index: -1;
+  left: 0;
 `;

@@ -6,7 +6,7 @@ import GoogleMapReact from 'google-map-react';
 import { apiIsLoaded, appendGmapScript } from './helpers/gmapFunctions';
 
 import MapMarker from '../MapMarker/MapMarker';
-import { SearchInput } from './SimpleMap.styles';
+import { SearchInput, MapContainer } from './SimpleMap.styles';
 import { BERLIN } from '../../constants';
 import { getPhoto } from '../../utils/functions';
 
@@ -61,7 +61,7 @@ class SimpleMap extends Component {
             types={['establishment']}
           />
         )}
-        <div style={{ height: '70vh', width: '100%' }}>
+        <MapContainer>
           {mapReady && (
             <GoogleMapReact
               defaultCenter={{ lat: BERLIN.lat, lng: BERLIN.lng }}
@@ -86,7 +86,7 @@ class SimpleMap extends Component {
               ))}
             </GoogleMapReact>
           )}
-        </div>
+        </MapContainer>
       </>
     );
   }
