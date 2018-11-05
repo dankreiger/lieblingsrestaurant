@@ -11,7 +11,10 @@ const showStars = (clickRating, i) => {
       width={23}
       className="star rating"
       data-rating={i}
-      onClick={() => clickRating(i)}
+      onClick={e => {
+        e.stopPropagation();
+        clickRating(i);
+      }}
     >
       <polygon
         points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78"

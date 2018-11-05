@@ -10,12 +10,17 @@ export const StarContainer = styled.div`
       }
     }
 
+    &:active {
+      .star polygon {
+        transform: scale(1.02);
+      }
+    }
+
     .star {
       float: left;
-      transition: transform 250ms;
 
       polygon {
-        transition: fill 250ms;
+        transition: all 250ms cubic-bezier(0, 1.1, 1, 1.3);
         fill: #d8d8d8;
       }
 
@@ -25,9 +30,10 @@ export const StarContainer = styled.div`
         }
       }
       &:active ~ .star {
-        transform: scale(0.9);
+        /* transform: scale(0.9); */
         polygon {
-          fill: #c7c7c7 !important;
+          filter: sepia(100%);
+          fill: aliceblue !important;
         }
       }
     }
