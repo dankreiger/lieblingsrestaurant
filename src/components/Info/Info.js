@@ -1,5 +1,5 @@
 import React from 'react';
-import { arrayOf, shape, string } from 'prop-types';
+import { array, arrayOf, boolean, number, shape, string } from 'prop-types';
 import { Container, Col } from 'reactstrap';
 import { connect } from 'react-redux';
 import { FavoritesRow } from './Info.styles';
@@ -33,7 +33,34 @@ const Info = ({ favorites, history }) => {
 Info.propTypes = {
   favorites: arrayOf(
     shape({
-      description: string.isRequired
+      description: string,
+      isFixture: boolean,
+      label: string,
+      matchedSubstrings: shape({
+        length: number,
+        offset: number
+      }),
+      placeId: string,
+      gmaps: shape({
+        adr_address: string,
+        formatted_address: string,
+        formatted_phone_number: string,
+        icon: string,
+        id: string,
+        name: string,
+        photos: array,
+        place_id: string,
+        rating: number,
+        reference: string,
+        reviews: array,
+        url: string
+      }),
+      location: shape({
+        lat: number,
+        lng: number
+      }),
+      photo: string,
+      favorited: boolean
     })
   )
 };

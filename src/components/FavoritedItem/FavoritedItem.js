@@ -26,7 +26,7 @@ function FavoritedItem({ favorite, favoritesCount, history, deleteFavorite }) {
   return (
     <FavoritedItemContainer
       inverse
-      className={classNames({ itemIsUnmounting })}
+      className={classNames('favoritedItemContainer', { itemIsUnmounting })}
       onClick={() =>
         window.open(
           favorite.gmaps && favorite.gmaps.url
