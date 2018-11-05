@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 // import PropTypes from "prop-types";
 import classNames from 'classnames';
@@ -8,18 +8,25 @@ import { Button, Badge, CardImg, CardImgOverlay, CardText } from 'reactstrap';
 import { getPhoto } from '../../utils/functions';
 import { FavoritedItemContainer, FooterDiv } from './FavoritedItem.styles';
 import Stars from '../Stars/Stars';
+import { ITEM_UNMOUNT_DURATION } from '../../constants';
 
 function FavoritedItem({ favorite, favoritesCount, history, deleteFavorite }) {
+  const [itemIsUnmounting, setItemIsUnmounting] = useState(false);
+
   const handleDeleteFavorite = (e, favorite) => {
     e.stopPropagation();
-    deleteFavorite(favorite);
-    if (favoritesCount === 1) {
-      history.push('/');
-    }
+    setItemIsUnmounting(true);
+    setTimeout(() => {
+      deleteFavorite(favorite);
+      if (favoritesCount === 1) {
+        history.push('/');
+      }
+    }, ITEM_UNMOUNT_DURATION);
   };
   return (
     <FavoritedItemContainer
       inverse
+      className={classNames({ itemIsUnmounting })}
       onClick={() =>
         window.open(
           favorite.gmaps && favorite.gmaps.url

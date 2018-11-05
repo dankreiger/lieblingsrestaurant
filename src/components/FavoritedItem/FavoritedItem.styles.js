@@ -1,10 +1,18 @@
 import styled from 'styled-components';
 import { Card } from 'reactstrap';
+import { ITEM_UNMOUNT_DURATION } from '../../constants';
 
 export const FavoritedItemContainer = styled(Card)`
   cursor: pointer;
   overflow: hidden;
   padding-bottom: 100%;
+  border-radius: 0 !important;
+  border: none !important;
+  opacity: 1;
+  transition: opacity ${ITEM_UNMOUNT_DURATION}ms;
+  &.itemIsUnmounting {
+    opacity: 0;
+  }
   .card-text {
     margin-bottom: 0;
     font-size: 1.2em;
@@ -42,4 +50,7 @@ export const FooterDiv = styled.div`
   justify-content: space-between;
   width: 100%;
   transform: translateX(-50%);
+  button {
+    border-radius: 0 !important;
+  }
 `;
