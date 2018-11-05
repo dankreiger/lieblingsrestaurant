@@ -1,6 +1,6 @@
 /*global google */
 
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import GoogleMapReact from 'google-map-react';
 import { apiIsLoaded, appendGmapScript } from './helpers/gmapFunctions';
@@ -8,8 +8,9 @@ import { apiIsLoaded, appendGmapScript } from './helpers/gmapFunctions';
 import MapMarker from '../MapMarker/MapMarker';
 import { SearchInput } from './SimpleMap.styles';
 import { BERLIN } from '../../constants';
+import { getPhoto } from '../../utils/functions';
 
-class SimpleMap extends PureComponent {
+class SimpleMap extends Component {
   state = {
     places: [],
     currentMapInfo: null,
@@ -63,10 +64,6 @@ class SimpleMap extends PureComponent {
         <div style={{ height: '70vh', width: '100%' }}>
           {mapReady && (
             <GoogleMapReact
-              // bootstrapURLKeys={{
-              //   key: process.env.REACT_APP_RESTAURANT_API_KEY,
-              //   libraries: ['geometry', 'drawing', 'places']
-              // }}
               defaultCenter={{ lat: BERLIN.lat, lng: BERLIN.lng }}
               defaultZoom={12}
               yesIWantToUseGoogleMapApiInternals
@@ -80,14 +77,11 @@ class SimpleMap extends PureComponent {
                   key={place.placeId}
                   text={place.label}
                   icon={place.icon || place.gmaps.icon}
-                  photo={
-                    place.gmaps.photos
-                      ? place.gmaps.photos[0].getUrl()
-                      : place.gmaps.icon
-                  }
+                  photo={getPhoto(place)}
                   lat={place.location.lat}
                   lng={place.location.lng}
-                  data={place}
+                  favorite={place}
+                  favorited={place.favorited}
                 />
               ))}
             </GoogleMapReact>

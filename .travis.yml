@@ -6,3 +6,12 @@ cache:
     - node_modules
 script:
   - npm test
+deploy:
+  provider: surge
+  skip_cleanup: true
+  domain: lieblingsrestaurant.surge.sh
+  project: ./build/
+after_success:
+  - surge --project ./build --domain lieblingsrestaurant.surge.sh
+on:
+  branch: master

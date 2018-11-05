@@ -1,24 +1,36 @@
 import React, { useState } from 'react';
-import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from 'reactstrap';
-
+import {
+  Badge,
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  Nav,
+  NavItem
+} from 'reactstrap';
+import { connect } from 'react-redux';
+import classNames from 'classnames';
 import { Link } from 'react-router-dom';
+import { pluralize } from './../../utils/functions';
+import { InfoLink } from './Navigation.styles';
 
-const Navigation = () => {
+const Navigation = ({ favorites }) => {
   const [isOpen, toggleMenu] = useState(false);
   return (
     <Navbar color="light" light expand="md">
+      <Link className="navbar-brand" to="/">
+        Home
+      </Link>
       <NavbarToggler onClick={() => toggleMenu(!isOpen)} />
       <Collapse isOpen={isOpen} navbar>
         <Nav className="ml-auto" navbar>
           <NavItem>
-            <Link className="nav-link" to="/">
-              Home
-            </Link>
-          </NavItem>
-          <NavItem>
-            <Link className="nav-link" to="/info">
-              Info
-            </Link>
+            <InfoLink
+              className={classNames('nav-link', { show: favorites.length })}
+              to="/info"
+            >
+              Link To Info Page:{' '}
+              <Badge>{pluralize('favorite', favorites)}</Badge>
+            </InfoLink>
           </NavItem>
         </Nav>
       </Collapse>
@@ -26,4 +38,11 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+const mapStateToProps = ({ favorites }) => ({
+  favorites: favorites
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(Navigation);

@@ -1,8 +1,11 @@
 {
-  "private": true,
+  "name": "lieblingsrestaurant",
+  "homepage": "https://lieblingsrestaurant.surge.sh/",
   "license": "ISC",
+  "author": "Dan Kreiger <dan@dankreiger.com> (http://www.dankreiger.com)",
   "scripts": {
     "build": "react-scripts build",
+    "deploy": "npm run build && surge --project ./build --domain news-finder.surge.sh",
     "eject": "react-scripts eject",
     "start": "./scripts/start.sh",
     "start:scripts": "react-scripts start",
@@ -23,6 +26,7 @@
     "classnames": "2.2.6",
     "google-map-react": "1.0.9",
     "lodash.isempty": "4.4.0",
+    "lodash.throttle": "4.1.1",
     "react": "^16.7.0-alpha.0",
     "react-dom": "^16.7.0-alpha.0",
     "react-geosuggest": "2.9.0",

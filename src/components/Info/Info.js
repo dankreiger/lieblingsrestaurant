@@ -1,64 +1,34 @@
 import React from 'react';
 import { arrayOf, shape, string } from 'prop-types';
-import { Col, Row, ListGroup, ListGroupItem } from 'reactstrap';
-import classNames from 'classnames';
+import { Container, Col } from 'reactstrap';
 import { connect } from 'react-redux';
-import { InfoContainer, FavoritesRow, AvgRating } from './Info.styles';
-import Stars from '../Stars/Stars';
+import { FavoritesRow } from './Info.styles';
+import * as actions from '../../actions';
+import FavoritedItem from '../FavoritedItem/FavoritedItem';
 
-const Info = ({ favorites }) => (
-  <InfoContainer>
-    <Row>
-      <Col>
-        <p className="lead">
-          {favorites.length} Favorite
-          {favorites.length !== 1 ? 's' : ''}
-        </p>
-      </Col>
-    </Row>
-    {favorites && (
-      <FavoritesRow>
-        <Col xs={12} sm={8}>
-          <ListGroup>
-            {favorites.map(favorite => (
-              <ListGroupItem
-                key={favorite.placeId}
-                className="justify-content-between"
-              >
-                <div className="info-content-wrapper">
-                  <img
-                    className="img-fluid"
-                    src={
-                      favorite.gmaps.photos
-                        ? favorite.gmaps.photos[0].getUrl()
-                        : favorite.gmaps.icon
-                    }
-                  />
-                  <div>
-                    <div>{favorite.description}</div>
-                    <AvgRating
-                      pill
-                      className={classNames({
-                        'd-none': !favorite.gmaps.rating
-                      })}
-                    >
-                      {' '}
-                      Average Rating: {favorite.gmaps.rating}
-                    </AvgRating>
-                  </div>
-                </div>
-                <div>
-                  <span>Your rating:</span>
-                  <Stars />
-                </div>
-              </ListGroupItem>
-            ))}
-          </ListGroup>
-        </Col>
-      </FavoritesRow>
-    )}
-  </InfoContainer>
-);
+const Info = ({ favorites, history }) => {
+  const sortedFavorites = () => {
+    return favorites.sort((a, b) => b.rating - a.rating);
+  };
+
+  return (
+    <Container fluid>
+      {favorites && (
+        <FavoritesRow>
+          {sortedFavorites().map(favorite => (
+            <Col xs={6} sm={4} key={favorite.placeId}>
+              <FavoritedItem
+                favoritesCount={favorites.length}
+                history={history}
+                favorite={favorite}
+              />
+            </Col>
+          ))}
+        </FavoritesRow>
+      )}
+    </Container>
+  );
+};
 
 Info.propTypes = {
   favorites: arrayOf(
@@ -74,5 +44,5 @@ const mapStateToProps = ({ favorites }) => ({
 
 export default connect(
   mapStateToProps,
-  null
+  actions
 )(Info);

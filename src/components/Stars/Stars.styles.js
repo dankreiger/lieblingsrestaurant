@@ -12,14 +12,22 @@ export const StarContainer = styled.div`
 
     .star {
       float: left;
+      transition: transform 250ms;
 
       polygon {
+        transition: fill 250ms;
         fill: #d8d8d8;
       }
 
       &:hover ~ .star {
         polygon {
           fill: #d8d8d8 !important;
+        }
+      }
+      &:active ~ .star {
+        transform: scale(0.9);
+        polygon {
+          fill: #c7c7c7 !important;
         }
       }
     }
