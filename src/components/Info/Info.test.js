@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import Info from './Info';
-import Root from './../../Root';
 import { dummyFavorites } from '../../utils/dummyData';
 import FavoritedItem from '../FavoritedItem/FavoritedItem';
 import configureStore from 'redux-mock-store';
