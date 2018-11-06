@@ -17,7 +17,7 @@ const setupReduxConnectedComponent = data => {
   );
 };
 
-describe('info', () => {
+describe('Info', () => {
   let infoComponent;
 
   describe('rendering', () => {
