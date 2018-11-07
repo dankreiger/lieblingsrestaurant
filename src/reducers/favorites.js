@@ -1,5 +1,5 @@
 import { ADD_FAVORITE, DELETE_FAVORITE, SET_RATING } from '../constants';
-import { getPhoto } from '../utils/functions';
+import { getPhoto, fetchAllPhotos } from '../utils/functions';
 
 const favorites = (state = [], action) => {
   let newState;
@@ -14,6 +14,7 @@ const favorites = (state = [], action) => {
           {
             ...payload,
             photo: getPhoto(payload),
+            photos: fetchAllPhotos(payload),
             favorited: true
           }
         ];

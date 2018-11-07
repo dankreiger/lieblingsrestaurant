@@ -48,8 +48,8 @@ describe('Info', () => {
     test('should render 4 favorite items given 4 favorites from redux', () => {
       infoComponent = mount(setupReduxConnectedComponent(dummyFavorites));
 
-      expect(dummyFavorites.length).toBe(4);
-      expect(infoComponent.find(FavoritedItem).length).toBe(4);
+      expect(dummyFavorites.length).toBe(2);
+      expect(infoComponent.find(FavoritedItem).length).toBe(2);
     });
   });
 });
