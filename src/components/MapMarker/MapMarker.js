@@ -6,29 +6,24 @@ import { connect } from 'react-redux';
 import { MapMarkerContainer, MapMarkerToolTip } from './MapMarker.styles';
 
 import * as actions from '../../actions';
+import { getPhoto } from '../../utils/functions';
 
 // please remove some of these unnecessary props
-const MapMarker = ({
-  favorite,
-  text,
-  icon,
-  photo,
-  addFavorite,
-  deleteFavorite,
-  favorited
-}) => {
-  const [currentFavoriteStatus, setCurrentFavoriteStatus] = useState(favorited);
+const MapMarker = ({ place, addFavorite, deleteFavorite }) => {
+  const [currentFavoriteStatus, setCurrentFavoriteStatus] = useState(
+    place.favorited
+  );
   const [toolTipVisible, toggleToolTipVisibility] = useState(false);
 
   const handleAddFavorite = e => {
     e.stopPropagation();
-    addFavorite(favorite);
+    addFavorite(place);
     setCurrentFavoriteStatus(true);
   };
 
   const handleDeleteFavorite = e => {
     e.stopPropagation();
-    deleteFavorite(favorite);
+    deleteFavorite(place);
     setCurrentFavoriteStatus(false);
     toggleToolTipVisibility(false);
   };
@@ -37,8 +32,8 @@ const MapMarker = ({
       onClick={() => toggleToolTipVisibility(!toolTipVisible)}
     >
       <MapMarkerToolTip className={classNames({ show: toolTipVisible })}>
-        <img src={photo} alt="tool tip img" />
-        <div className="text">{text}</div>
+        <img src={getPhoto(place)} alt="tool tip img" />
+        <div className="text-label">{place.label}</div>
         <Button
           className={classNames({
             unfavorited: !currentFavoriteStatus,
@@ -51,7 +46,7 @@ const MapMarker = ({
           {currentFavoriteStatus ? 'Remove' : 'Add to favorites'}
         </Button>
       </MapMarkerToolTip>
-      <img src={icon} alt={text} />
+      <img src={place.icon || place.gmaps.icon} alt={place.label} />
     </MapMarkerContainer>
   );
 };

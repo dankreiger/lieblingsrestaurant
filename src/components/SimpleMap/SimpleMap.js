@@ -8,8 +8,8 @@ import { apiIsLoaded, appendGmapScript } from './helpers/gmapFunctions';
 import MapMarker from '../MapMarker/MapMarker';
 import { SearchInput, MapContainer } from './SimpleMap.styles';
 import { BERLIN } from '../../constants';
-import { getPhoto } from '../../utils/functions';
 
+// TODO: Improve this component!!!
 class SimpleMap extends Component {
   state = {
     places: [],
@@ -75,13 +75,9 @@ class SimpleMap extends Component {
               {places.map(place => (
                 <MapMarker
                   key={place.placeId}
-                  text={place.label}
-                  icon={place.icon || place.gmaps.icon}
-                  photo={getPhoto(place)}
                   lat={place.location.lat}
                   lng={place.location.lng}
-                  favorite={place}
-                  favorited={place.favorited}
+                  place={place}
                 />
               ))}
             </GoogleMapReact>

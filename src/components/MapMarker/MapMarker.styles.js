@@ -44,7 +44,7 @@ export const MapMarkerToolTip = styled.div`
       border: none;
     }
   }
-  .text {
+  .text-label {
     display: -webkit-box;
     max-width: 400px;
     height: 32px;
@@ -76,7 +76,7 @@ export const MapMarkerToolTip = styled.div`
     button {
       height: 100%;
     }
-    .text {
+    .text-label {
       opacity: 0;
     }
   }

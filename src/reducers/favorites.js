@@ -3,6 +3,7 @@ import { getPhoto } from '../utils/functions';
 
 const favorites = (state = [], action) => {
   let newState;
+
   const { payload } = action;
   switch (action.type) {
     case ADD_FAVORITE:
