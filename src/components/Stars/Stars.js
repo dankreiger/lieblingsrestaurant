@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { PureComponent } from 'react';
 import { StarContainer } from './Stars.styles';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
-const showStars = (clickRating, i) => {
+const showStars = (setRating, i) => {
   return (
     <svg
       key={i}
@@ -13,7 +13,7 @@ const showStars = (clickRating, i) => {
       data-rating={i}
       onClick={e => {
         e.stopPropagation();
-        clickRating(i);
+        setRating(i);
       }}
     >
       <polygon
@@ -24,17 +24,25 @@ const showStars = (clickRating, i) => {
   );
 };
 
-const Stars = ({ favorite, setRating }) => {
-  const [rating, clickRating] = useState(favorite.rating || 1);
-  useEffect(() => {
-    setRating(favorite, rating);
-  });
-  return (
-    <StarContainer className="stars" data-stars={rating}>
-      {[1, 2, 3, 4, 5].map(i => showStars(clickRating, i))}
-    </StarContainer>
-  );
-};
+class Stars extends PureComponent {
+  componentDidMount() {
+    const { favorite, setRating } = this.props;
+    setRating(favorite, favorite.rating || 1);
+  }
+
+  setRating = rating => {
+    this.props.setRating(this.props.favorite, rating);
+  };
+
+  render() {
+    const { rating } = this.props.favorite;
+    return (
+      <StarContainer className="stars" data-stars={rating}>
+        {[1, 2, 3, 4, 5].map(i => showStars(this.setRating, i))}
+      </StarContainer>
+    );
+  }
+}
 
 const mapStateToProps = ({ favorites }) => ({ favorites });
 
