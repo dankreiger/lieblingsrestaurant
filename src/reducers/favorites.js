@@ -24,8 +24,8 @@ const favorites = (state = [], action) => {
     case DELETE_FAVORITE:
       return state.filter(favorite => favorite.placeId !== payload.placeId);
     case SET_RATING:
-      return state.map((favorite, index) => {
-        if (index.placeId !== payload.placeId) {
+      return state.map(favorite => {
+        if (favorite.placeId !== payload.favorite.placeId) {
           return favorite;
         }
         return {
