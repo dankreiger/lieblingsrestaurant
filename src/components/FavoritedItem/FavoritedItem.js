@@ -5,13 +5,26 @@ import classNames from 'classnames';
 import * as actions from '../../actions';
 import Lightbox from 'react-image-lightbox';
 
-import { Button, Badge, CardImg, CardImgOverlay, CardText } from 'reactstrap';
-import { getPhoto } from '../../utils/functions';
+import {
+  Button,
+  Badge,
+  CardImg,
+  CardTitle,
+  CardImgOverlay,
+  CardText
+} from 'reactstrap';
+import { getPhoto, cardinalize } from '../../utils/functions';
 import { FavoritedItemContainer, FooterDiv } from './FavoritedItem.styles';
 import Stars from '../Stars/Stars';
 import { ITEM_UNMOUNT_DURATION } from '../../constants';
 
-const FavoritedItem = ({ favorite, favorites, history, deleteFavorite }) => {
+const FavoritedItem = ({
+  favorite,
+  favorites,
+  history,
+  deleteFavorite,
+  itemIndex
+}) => {
   const [itemIsUnmounting, setItemIsUnmounting] = useState(false);
   const [lightboxIsOpen, showLightbox] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
@@ -35,7 +48,7 @@ const FavoritedItem = ({ favorite, favorites, history, deleteFavorite }) => {
       >
         <CardImg width="100%" src={getPhoto(favorite)} alt="Card image cap" />
         <CardImgOverlay>
-          {/* <CardTitle>Card Title</CardTitle> */}
+          <CardTitle>My {cardinalize(itemIndex + 1)} Favorite</CardTitle>
           <CardText>{favorite.description}</CardText>
           <CardText>
             <Badge
@@ -45,7 +58,7 @@ const FavoritedItem = ({ favorite, favorites, history, deleteFavorite }) => {
               })}
             >
               {' '}
-              Average Rating: {favorite.gmaps.rating}
+              Avg. Google Rating: {favorite.gmaps.rating}
             </Badge>
           </CardText>
           <FooterDiv>

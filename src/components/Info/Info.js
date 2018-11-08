@@ -15,9 +15,13 @@ const Info = ({ favorites, history }) => {
     <Container fluid>
       {favorites && (
         <FavoritesRow noGutters>
-          {sortedFavorites().map(favorite => (
+          {sortedFavorites().map((favorite, index) => (
             <Col xs={12} sm={6} md={4} xl={3} key={favorite.placeId}>
-              <FavoritedItem history={history} favorite={favorite} />
+              <FavoritedItem
+                history={history}
+                favorite={favorite}
+                itemIndex={index}
+              />
             </Col>
           ))}
         </FavoritesRow>
