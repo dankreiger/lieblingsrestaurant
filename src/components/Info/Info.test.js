@@ -10,6 +10,7 @@ const setupReduxConnectedComponent = data => {
   const middlewares = [];
   const mockStore = configureStore(middlewares);
   const store = mockStore({ favorites: data });
+
   return (
     <Provider store={store}>
       <Info />
@@ -21,9 +22,11 @@ describe('Info', () => {
   let infoComponent;
 
   describe('rendering', () => {
+    const mockStore = configureStore();
+
     beforeEach(() => {
       infoComponent = shallow(
-        <Provider store={{}}>
+        <Provider store={mockStore({})}>
           <Info />
         </Provider>
       );
