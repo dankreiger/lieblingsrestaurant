@@ -1,14 +1,22 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { Button } from 'reactstrap';
 
-export const InfoLink = styled(Link)`
-  opacity: 0;
-  transition: opacity 250ms;
-  font-size: 1.2em;
+export const InfoLinkButton = styled(Button)`
+  display: none !important;
   &.show {
-    opacity: 1;
+    display: inline-block !important;
   }
-  &:hover {
-    opacity: 0.9;
+`;
+export const InfoLink = styled(Link)`
+  color: #fff;
+  text-decoration: none;
+  &:hover,
+  &:active,
+  &:link,
+  &:focus,
+  &:visited {
+    color: #fff;
+    text-decoration: none;
   }
 `;

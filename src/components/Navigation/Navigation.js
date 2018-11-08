@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Badge,
+  Button,
   Collapse,
   Navbar,
   NavbarToggler,
@@ -11,10 +11,15 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { pluralize } from './../../utils/functions';
-import { InfoLink } from './Navigation.styles';
+import { InfoLink, InfoLinkButton } from './Navigation.styles';
 
 const Navigation = ({ favorites }) => {
   const [isOpen, toggleMenu] = useState(false);
+
+  const resetApp = () => {
+    localStorage.removeItem('state');
+    return (window.location.href = '/');
+  };
   return (
     <Navbar color="light" light expand="md">
       <Link className="navbar-brand" to="/">
@@ -24,13 +29,17 @@ const Navigation = ({ favorites }) => {
       <Collapse isOpen={isOpen} navbar>
         <Nav className="ml-auto" navbar>
           <NavItem>
-            <InfoLink
-              className={classNames('nav-link', { show: favorites.length })}
-              to="/info"
+            <InfoLinkButton
+              color="info"
+              className={classNames({ show: favorites.length > 0 })}
             >
-              Link To Info Page:{' '}
-              <Badge>{pluralize('favorite', favorites)}</Badge>
-            </InfoLink>
+              <InfoLink to="/info">{pluralize('favorite', favorites)}</InfoLink>
+            </InfoLinkButton>
+          </NavItem>
+          <NavItem>
+            <Button onClick={() => resetApp()} color="danger">
+              Reset All
+            </Button>
           </NavItem>
         </Nav>
       </Collapse>
