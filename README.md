@@ -83,15 +83,15 @@
 
 ### TODO
 
-1. Unit/integration testing on components, actions, and reducers
-2. Add styleguide
-3. Make selecting / favoriting more user friendly bzw. allow user to unselect items that aren't favorited
-4. Filter search to restaurants only
-5. Make sure redux state is [immutable](https://redux.js.org/recipes/structuringreducers/immutableupdatepatterns)
-6. Refactor unnecessary connections to the redux store
-7. Make sure favorite items sort on click and not on re-render
-8. Make favorite items editable
-9. Once these are done, rewrite the app from scratch with TDD and a clean approach
+- [ ] Unit/integration testing on components, actions, and reducers
+- [ ] Add styleguide
+- [ ] Make selecting / favoriting more user friendly bzw. allow user to unselect items that aren't favorited
+- [ ] Filter search to restaurants only
+- [x] Make sure redux state is [immutable](https://redux.js.org/recipes/structuringreducers/immutableupdatepatterns)
+- [ ] Refactor unnecessary connections to the redux store
+- [x] Make sure favorite items sort on click and not on re-render
+- [ ] Make favorite items editable
+- [ ] Once these are done, rewrite the app from scratch with TDD and a clean approach
 
 ***
 
