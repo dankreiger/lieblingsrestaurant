@@ -20,9 +20,15 @@ export const getPhoto = item => {
 
 export const fetchAllPhotos = item => {
   if (item.gmaps && item.gmaps.photos) {
-    return item.gmaps.photos.map(photo => photo.getUrl());
+    return item.gmaps.photos.map(photo => {
+      try {
+        return photo.getUrl();
+      } catch {
+        return 'https://placebear.com/g/965/787';
+      }
+    });
   } else if (item.gmaps.icon) {
-    return item.gmaps.icon;
+    return [item.gmaps.icon];
   } else {
     return null;
   }
