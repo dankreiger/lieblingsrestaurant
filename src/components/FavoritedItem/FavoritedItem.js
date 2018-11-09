@@ -101,10 +101,3 @@ export default connect(
   mapStateToProps,
   actions
 )(FavoritedItem);
-
-// window.open(
-//   favorite.gmaps && favorite.gmaps.url
-//     ? favorite.gmaps.url
-//     : 'https://www.google.de/',
-//   '_blank'
-// )
