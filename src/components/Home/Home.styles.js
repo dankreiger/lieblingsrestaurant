@@ -8,7 +8,7 @@ export const HomeContainer = styled(Container)`
   &.toggled {
     padding-left: 250px !important;
     .arrow-icon {
-      transform: rotate(-180deg);
+      transform: rotate(180deg);
     }
   }
 `;

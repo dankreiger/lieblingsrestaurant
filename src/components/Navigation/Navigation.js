@@ -26,7 +26,9 @@ const Navigation = ({ navigation, toggleNavigation }) => {
           </HomeLink>
         </li>
         <li>
-          <FavoritesLink to="/info">Favorites</FavoritesLink>
+          <FavoritesLink to="/info" onClick={toggleNavigation}>
+            Favorites
+          </FavoritesLink>
         </li>
         <li>
           <RemoveLink to="#" onClick={event => resetApp(event)}>

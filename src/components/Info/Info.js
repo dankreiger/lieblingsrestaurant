@@ -25,11 +25,6 @@ const Info = ({ favorites, history, toggleNavigation, navigationToggled }) => {
             favorites={favorites}
             toggleNavigation={toggleNavigation}
           />
-          {/* <div className="fas fa-angle-right arrow-icon" />
-            <div className="fas fa-utensils" />
-            <div className="favorites-counter">
-              {pluralize('favorite', favorites)}
-            </div> */}
         </Col>
       </NavigationTogglerRow>
       {favorites && (

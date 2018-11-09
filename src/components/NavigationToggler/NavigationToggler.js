@@ -6,7 +6,7 @@ import { NavigationTogglerContainer } from './NavigationToggler.styles';
 const NavigationToggler = ({ favorites, toggleNavigation }) => {
   return (
     <NavigationTogglerContainer onClick={toggleNavigation}>
-      <div className="fas fa-angle-right arrow-icon" />
+      <div className="fas fa-angle-left arrow-icon" />
       <div className="fas fa-utensils" />
       <div className="favorites-counter">
         {pluralize('favorite', favorites)}
