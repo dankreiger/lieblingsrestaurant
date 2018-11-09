@@ -78,7 +78,7 @@ export const HomeLink = styled(Link)`
 `;
 
 export const FavoritesLink = styled(Link)`
-  font-size: 1.5em;
+  font-size: 1.25em;
 `;
 
 export const RemoveLink = styled(Link)`

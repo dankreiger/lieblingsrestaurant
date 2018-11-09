@@ -14,6 +14,8 @@ export const InfoContainer = styled(Container)`
 
 export const NavigationTogglerRow = styled(Row)`
   button {
+    position: fixed;
+    z-index: 1;
     width: 100%;
   }
 `;
