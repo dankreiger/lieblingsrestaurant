@@ -1,6 +1,22 @@
 import styled from 'styled-components';
-import { Badge, Row } from 'reactstrap';
+import { Badge, Container, Row } from 'reactstrap';
 
+export const InfoContainer = styled(Container)`
+  padding-left: 0px !important;
+  transition: padding 300ms;
+  &.toggled {
+    padding-left: 250px !important;
+    .arrow-icon {
+      transform: rotate(-180deg);
+    }
+  }
+`;
+
+export const NavigationTogglerRow = styled(Row)`
+  button {
+    width: 100%;
+  }
+`;
 export const FavoritesRow = styled(Row)`
   height: 100%;
   align-items: center;

@@ -1,7 +1,7 @@
 import { ADD_FAVORITE, DELETE_FAVORITE, SET_RATING } from '../constants';
 import { getPhoto, fetchAllPhotos } from '../utils/functions';
 
-const favorites = (state = [], action) => {
+const favoritesReducer = (state = [], action) => {
   let newState;
 
   const { payload } = action;
@@ -38,4 +38,4 @@ const favorites = (state = [], action) => {
   }
 };
 
-export default favorites;
+export default favoritesReducer;

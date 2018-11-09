@@ -2,14 +2,17 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import Info from './Info';
-import { dummyFavorites } from '../../utils/dummyData';
+import { dummyFavorites, dummyNavigation } from '../../utils/dummyData';
 import FavoritedItem from '../FavoritedItem/FavoritedItem';
 import configureStore from 'redux-mock-store';
 
-const setupReduxConnectedComponent = data => {
+const setupReduxConnectedComponent = (
+  favorites,
+  navigation = { toggled: false }
+) => {
   const middlewares = [];
   const mockStore = configureStore(middlewares);
-  const store = mockStore({ favorites: data });
+  const store = mockStore({ favorites, navigation });
 
   return (
     <Provider store={store}>
@@ -49,7 +52,9 @@ describe('Info', () => {
     });
 
     test('should render 4 favorite items given 4 favorites from redux', () => {
-      infoComponent = mount(setupReduxConnectedComponent(dummyFavorites));
+      infoComponent = mount(
+        setupReduxConnectedComponent(dummyFavorites, dummyNavigation)
+      );
 
       expect(dummyFavorites.length).toBe(2);
       expect(infoComponent.find(FavoritedItem).length).toBe(2);

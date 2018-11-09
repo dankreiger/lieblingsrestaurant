@@ -1,3 +1,5 @@
+export const dummyNavigation = { toggled: false };
+
 export const dummyFavorites = [
   {
     description: 'Hotel Novotel Berlin Mitte, Fischerinsel, Berlin, Germany',

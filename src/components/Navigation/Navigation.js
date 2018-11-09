@@ -1,55 +1,64 @@
-import React, { useState } from 'react';
-import {
-  Button,
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  Nav,
-  NavItem
-} from 'reactstrap';
+import React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
-import { pluralize } from './../../utils/functions';
-import { InfoLink, InfoLinkButton } from './Navigation.styles';
+import {
+  NavigationContainer,
+  FavoritesLink,
+  HomeLink,
+  RemoveLink
+} from './Navigation.styles';
+import * as actions from '../../actions';
 
-const Navigation = ({ favorites }) => {
-  const [isOpen, toggleMenu] = useState(false);
-
-  const resetApp = () => {
+const Navigation = ({ navigation, toggleNavigation }) => {
+  const resetApp = event => {
+    event.preventDefault();
     localStorage.removeItem('state');
-    return (window.location.href = '/');
+    return (window.location.href = '/'); // find a better way
   };
   return (
-    <Navbar color="light" light expand="md">
-      <Link className="navbar-brand" to="/">
-        Home
-      </Link>
-      <NavbarToggler onClick={() => toggleMenu(!isOpen)} />
-      <Collapse isOpen={isOpen} navbar>
-        <Nav className="ml-auto" navbar>
-          <NavItem>
-            <InfoLinkButton
-              color="info"
-              className={classNames({ show: favorites.length > 0 })}
-            >
-              <InfoLink to="/info">{pluralize('favorite', favorites)}</InfoLink>
-            </InfoLinkButton>
-          </NavItem>
-          <NavItem>
-            <Button onClick={() => resetApp()} color="danger">
-              Reset All
-            </Button>
-          </NavItem>
-        </Nav>
-      </Collapse>
-    </Navbar>
+    <NavigationContainer
+      className={classNames({ toggled: navigation && navigation.toggled })}
+    >
+      <ul className="sidebar-nav">
+        <li className="sidebar-brand">
+          <HomeLink to="/" onClick={toggleNavigation}>
+            <i className="fas fa-home" />
+          </HomeLink>
+        </li>
+        <li>
+          <FavoritesLink to="/info">Favorites</FavoritesLink>
+        </li>
+        <li>
+          <RemoveLink to="#" onClick={event => resetApp(event)}>
+            Remove All Favorites
+          </RemoveLink>
+        </li>
+        {/* <li>
+          <Link to="#">Overview</Link>
+        </li>
+        <li>
+          <Link to="#">Events</Link>
+        </li>
+        <li>
+          <Link to="#">About</Link>
+        </li>
+        <li>
+          <Link to="#">Services</Link>
+        </li>
+        <li>
+          <Link to="#">Contact</Link>
+        </li> */}
+      </ul>
+    </NavigationContainer>
   );
 };
 
-const mapStateToProps = ({ favorites }) => ({ favorites });
+const mapStateToProps = ({ favorites, navigation }) => ({
+  favorites,
+  navigation
+});
 
 export default connect(
   mapStateToProps,
-  null
+  actions
 )(Navigation);

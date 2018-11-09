@@ -36,11 +36,11 @@ export const MapMarkerToolTip = styled.div`
     height: 36px;
     transition: height 250ms;
     &.unfavorited {
-      background-color: rgb(0, 123, 255, 0.8);
+      background-color: rgba(33, 150, 243, 0.9);
       border: none;
     }
     &.favorited {
-      background-color: rgb(220, 53, 69, 0.8);
+      background-color: rgba(183, 28, 28, 0.9);
       border: none;
     }
   }

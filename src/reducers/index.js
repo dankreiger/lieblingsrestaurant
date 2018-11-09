@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import favoritesReducer from './favorites';
+import favoritesReducer from './favoritesReducer';
+import navigationReducer from './navigationReducer';
 
 export default combineReducers({
-  favorites: favoritesReducer
+  favorites: favoritesReducer,
+  navigation: navigationReducer
 });

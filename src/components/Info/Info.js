@@ -1,18 +1,37 @@
 import React from 'react';
+import classNames from 'classnames';
 import { array, arrayOf, boolean, number, shape, string } from 'prop-types';
-import { Container, Col } from 'reactstrap';
+import { Col } from 'reactstrap';
 import { connect } from 'react-redux';
-import { FavoritesRow } from './Info.styles';
+import {
+  FavoritesRow,
+  InfoContainer,
+  NavigationTogglerRow
+} from './Info.styles';
 import * as actions from '../../actions';
 import FavoritedItem from '../FavoritedItem/FavoritedItem';
+import NavigationToggler from '../NavigationToggler/NavigationToggler';
 
-const Info = ({ favorites, history }) => {
+const Info = ({ favorites, history, toggleNavigation, navigationToggled }) => {
   const sortedFavorites = () => {
     return favorites.sort((a, b) => b.rating - a.rating);
   };
 
   return (
-    <Container fluid>
+    <InfoContainer fluid className={classNames({ toggled: navigationToggled })}>
+      <NavigationTogglerRow>
+        <Col>
+          <NavigationToggler
+            favorites={favorites}
+            toggleNavigation={toggleNavigation}
+          />
+          {/* <div className="fas fa-angle-right arrow-icon" />
+            <div className="fas fa-utensils" />
+            <div className="favorites-counter">
+              {pluralize('favorite', favorites)}
+            </div> */}
+        </Col>
+      </NavigationTogglerRow>
       {favorites && (
         <FavoritesRow noGutters>
           {sortedFavorites().map((favorite, index) => (
@@ -26,7 +45,7 @@ const Info = ({ favorites, history }) => {
           ))}
         </FavoritesRow>
       )}
-    </Container>
+    </InfoContainer>
   );
 };
 
@@ -65,7 +84,10 @@ Info.propTypes = {
   )
 };
 
-const mapStateToProps = ({ favorites }) => ({ favorites });
+const mapStateToProps = ({ favorites, navigation }) => ({
+  favorites,
+  navigationToggled: navigation.toggled
+});
 
 export default connect(
   mapStateToProps,

@@ -23,11 +23,12 @@ const composedEnhancers = compose(
 );
 
 const persistedState = loadState();
+/* store favorites in local storage */
 const store = createStore(rootReducer, persistedState, composedEnhancers);
 
 store.subscribe(
   throttle(() => {
-    saveState(store.getState());
+    saveState({ favorites: store.getState().favorites });
   }, 1000)
 );
 

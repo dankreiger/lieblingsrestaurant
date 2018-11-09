@@ -1,6 +1,7 @@
-export const setupGoogleMock = () => {
+export const appendGmapScript = () => {
   /*** Mock Google Maps JavaScript API ***/
   const google = {
+    addEventListener: jest.fn(),
     maps: {
       places: {
         AutocompleteService: () => {},
@@ -27,4 +28,5 @@ export const setupGoogleMock = () => {
     }
   };
   global.window.google = google;
+  return global.window.google;
 };

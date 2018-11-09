@@ -74,10 +74,10 @@ export const SearchInput = styled(Geosuggest)`
 `;
 
 export const MapContainer = styled.div`
-  height: calc(100vh - 104px);
+  height: calc(100vh - 44px);
   width: 100vw;
   position: fixed;
-  top: 104px;
+  top: 44px;
   z-index: -1;
   left: 0;
 `;
