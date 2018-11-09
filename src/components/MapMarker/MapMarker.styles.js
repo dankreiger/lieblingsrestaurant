@@ -9,6 +9,7 @@ export const MapMarkerContainer = styled.div`
 export const MapMarkerToolTip = styled.div`
   background: rgba(0, 0, 0, 0.5);
   color: #fff;
+  box-shadow: 3px 3px 6px #333;
   position: absolute;
   width: 130px;
   height: 130px;
@@ -20,6 +21,9 @@ export const MapMarkerToolTip = styled.div`
     Arial;
   border-radius: 100%;
   overflow: hidden;
+  &:active {
+    box-shadow: 1px 1px 3px #333;
+  }
   &.show {
     opacity: 1;
     button {
