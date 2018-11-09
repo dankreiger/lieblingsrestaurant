@@ -33,11 +33,11 @@ const FavoritedItem = ({
   const handleDeleteFavorite = (e, favorite) => {
     e.stopPropagation();
     setItemIsUnmounting(true);
+    deleteFavorite(favorite);
     setTimeout(() => {
       if (favorites.length === 1) {
         history.push('/');
       }
-      deleteFavorite(favorite);
     }, ITEM_UNMOUNT_DURATION);
   };
   return (
