@@ -1,6 +1,7 @@
 /*global google */
 
 import React, { Component } from 'react';
+import { array, object } from 'prop-types';
 import { connect } from 'react-redux';
 import GoogleMapReact from 'google-map-react';
 import { apiIsLoaded, appendGmapScript } from './helpers/gmapFunctions';
@@ -32,14 +33,15 @@ class SimpleMap extends Component {
 
   handleMapInstance = (map, maps, places) => {
     apiIsLoaded(map, maps, places);
-    this.setState({ currentMapInfo: { map, maps, places } });
+    this.setState({ currentMapInfo: { map, maps }, places });
   };
 
   handleSuggestSelect = newPlace => {
     if (!newPlace) {
       return;
     }
-    const { map, maps, places } = this.state.currentMapInfo;
+    const { map, maps } = this.state.currentMapInfo;
+    const { places } = this.state;
 
     if (!places.some(place => place.placeId === newPlace.placeId)) {
       this.setState({ places: [...places, newPlace] }, () => {
@@ -48,12 +50,22 @@ class SimpleMap extends Component {
     }
   };
 
+  removePlace = placeToRemove => {
+    const { places } = this.state;
+    const newPlaces = places.filter(
+      place => place.placeId !== placeToRemove.placeId
+    );
+    this.setState({ places: newPlaces });
+  };
+
   render() {
     const { places, currentMapInfo, mapReady } = this.state;
     return (
       <>
         {currentMapInfo && (
           <SearchInput
+            ref={el => (this._geoSuggest = el)}
+            onFocus={() => this._geoSuggest.clear()}
             placeholder="Search for a restaurant..."
             onSuggestSelect={this.handleSuggestSelect}
             location={new google.maps.LatLng(BERLIN.lat, BERLIN.lng)}
@@ -61,7 +73,7 @@ class SimpleMap extends Component {
             types={['establishment']}
           />
         )}
-        <MapContainer>
+        <MapContainer {...this.props.navigation}>
           {mapReady && (
             <GoogleMapReact
               defaultCenter={{ lat: BERLIN.lat, lng: BERLIN.lng }}
@@ -78,6 +90,7 @@ class SimpleMap extends Component {
                   lat={place.location.lat}
                   lng={place.location.lng}
                   place={place}
+                  removePlace={this.removePlace}
                 />
               ))}
             </GoogleMapReact>
@@ -88,7 +101,15 @@ class SimpleMap extends Component {
   }
 }
 
-const mapStateToProps = ({ favorites }) => ({ favorites });
+const mapStateToProps = ({ favorites, navigation }) => ({
+  favorites,
+  navigation
+});
+
+SimpleMap.propTypes = {
+  favorites: array,
+  navigation: object
+};
 
 export default connect(
   mapStateToProps,

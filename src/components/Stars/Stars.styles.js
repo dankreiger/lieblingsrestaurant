@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { DEFAULT_TRANSITION_DURATION } from '../../constants';
 
 export const StarContainer = styled.div`
   &.stars {
@@ -20,7 +21,8 @@ export const StarContainer = styled.div`
       float: left;
 
       polygon {
-        transition: all 250ms cubic-bezier(0, 1.1, 1, 1.3);
+        transition: all ${DEFAULT_TRANSITION_DURATION}ms
+          cubic-bezier(0, 1.1, 1, 1.3);
         fill: #d8d8d8;
       }
 

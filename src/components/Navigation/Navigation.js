@@ -35,30 +35,12 @@ const Navigation = ({ navigation, toggleNavigation }) => {
             Remove All Favorites
           </RemoveLink>
         </li>
-        {/* <li>
-          <Link to="#">Overview</Link>
-        </li>
-        <li>
-          <Link to="#">Events</Link>
-        </li>
-        <li>
-          <Link to="#">About</Link>
-        </li>
-        <li>
-          <Link to="#">Services</Link>
-        </li>
-        <li>
-          <Link to="#">Contact</Link>
-        </li> */}
       </ul>
     </NavigationContainer>
   );
 };
 
-const mapStateToProps = ({ favorites, navigation }) => ({
-  favorites,
-  navigation
-});
+const mapStateToProps = ({ navigation }) => ({ navigation });
 
 export default connect(
   mapStateToProps,

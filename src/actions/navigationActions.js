@@ -1,5 +1,9 @@
-import { TOGGLE_NAVIGATION } from '../constants';
+import { CLOSE_NAVIGATION, TOGGLE_NAVIGATION } from '../constants';
 
 export const toggleNavigation = () => ({
   type: TOGGLE_NAVIGATION
+});
+
+export const closeNavigation = () => ({
+  type: CLOSE_NAVIGATION
 });

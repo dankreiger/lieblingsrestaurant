@@ -1,26 +1,43 @@
 import styled from 'styled-components';
 import { Badge, Container, Row } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { fixedTopButton } from '../../utils/functions';
+import {
+  NAVIGATION_HEIGHT,
+  DEFAULT_TRANSITION_DURATION
+} from '../../constants';
 
 export const InfoContainer = styled(Container)`
-  padding-left: 0px !important;
-  transition: padding 300ms;
+  transition: padding ${DEFAULT_TRANSITION_DURATION}ms;
   &.toggled {
     padding-left: 250px !important;
-    .arrow-icon {
+    .fa-utensils {
       transform: rotate(180deg);
     }
   }
 `;
 
-export const NavigationTogglerRow = styled(Row)`
-  button {
-    position: fixed;
-    z-index: 1;
-    width: 100%;
+export const HomeButtonLink = styled(Link)`
+  position: fixed !important;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  transition: opacity ${DEFAULT_TRANSITION_DURATION}ms;
+  ${fixedTopButton()};
+  &:hover,
+  &:focus,
+  &:active,
+  &:link,
+  &:visited {
+    color: #fff !important;
+    opacity: 0.8;
+    text-decoration: none !important;
   }
 `;
 export const FavoritesRow = styled(Row)`
   height: 100%;
+  margin-top: ${NAVIGATION_HEIGHT}px;
   align-items: center;
   .info-content-wrapper {
     display: flex;
@@ -31,7 +48,7 @@ export const FavoritesRow = styled(Row)`
       margin-right: 10px;
       display: block;
       img {
-        transition: transform 250ms;
+        transition: transform ${DEFAULT_TRANSITION_DURATION}ms;
         object-fit: cover;
         width: 100%;
       }

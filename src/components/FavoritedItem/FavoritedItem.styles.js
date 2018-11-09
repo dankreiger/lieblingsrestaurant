@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import { Card } from 'reactstrap';
-import { ITEM_UNMOUNT_DURATION } from '../../constants';
+import {
+  ITEM_UNMOUNT_DURATION,
+  DEFAULT_TRANSITION_DURATION
+} from '../../constants';
 
 export const FavoritedItemContainer = styled(Card)`
   cursor: pointer;
@@ -24,7 +27,7 @@ export const FavoritedItemContainer = styled(Card)`
     }
   }
   img {
-    transition: transform 250ms;
+    transition: transform ${DEFAULT_TRANSITION_DURATION}ms;
     position: absolute;
     top: 0;
     bottom: 0;

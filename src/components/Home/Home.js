@@ -11,12 +11,17 @@ const Home = ({ favorites, toggleNavigation, navigationToggled }) => (
   <HomeContainer fluid className={classNames({ toggled: navigationToggled })}>
     <Row noGutters>
       <Col className="d-flex">
-        <NavigationToggler
-          favorites={favorites}
-          toggleNavigation={toggleNavigation}
-        />
+        {favorites.length > 0 && (
+          <NavigationToggler
+            favorites={favorites}
+            toggleNavigation={toggleNavigation}
+          />
+        )}
       </Col>
-      <Col xs={8} sm={10}>
+      <Col
+        xs={favorites.length > 0 ? 8 : 12}
+        sm={favorites.length > 0 ? 10 : 12}
+      >
         <SimpleMap />
       </Col>
     </Row>

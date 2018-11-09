@@ -5,6 +5,7 @@ import Info from './Info';
 import { dummyFavorites, dummyNavigation } from '../../utils/dummyData';
 import FavoritedItem from '../FavoritedItem/FavoritedItem';
 import configureStore from 'redux-mock-store';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const setupReduxConnectedComponent = (
   favorites,
@@ -16,7 +17,9 @@ const setupReduxConnectedComponent = (
 
   return (
     <Provider store={store}>
-      <Info />
+      <Router>
+        <Info />
+      </Router>
     </Provider>
   );
 };

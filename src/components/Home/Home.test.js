@@ -5,14 +5,17 @@ import configureStore from 'redux-mock-store';
 
 import Home from './Home';
 import SimpleMap from '../SimpleMap/SimpleMap';
-import { dummyNavigation } from '../../utils/dummyData';
+import { dummyNavigation, dummyFavorites } from '../../utils/dummyData';
 
 jest.mock('../SimpleMap/helpers/gmapFunctions.js');
 
-const setupReduxConnectedComponent = (navigation = { toggled: false }) => {
+const setupReduxConnectedComponent = (
+  favorites = [],
+  navigation = { toggled: false }
+) => {
   const middlewares = [];
   const mockStore = configureStore(middlewares);
-  const store = mockStore({ navigation });
+  const store = mockStore({ favorites, navigation });
   return (
     <Provider store={store}>
       <Home />
@@ -38,7 +41,9 @@ describe('Home', () => {
   });
 
   describe('structure', () => {
-    const homeComponent = mount(setupReduxConnectedComponent(dummyNavigation));
+    const homeComponent = mount(
+      setupReduxConnectedComponent(dummyFavorites, dummyNavigation)
+    );
 
     afterEach(() => {
       homeComponent.unmount();

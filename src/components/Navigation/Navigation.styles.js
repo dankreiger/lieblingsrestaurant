@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import {
+  NAVIGATION_HEIGHT,
+  DEFAULT_TRANSITION_DURATION
+} from '../../constants';
 
 export const NavigationContainer = styled.div`
   z-index: 1000;
@@ -10,7 +14,7 @@ export const NavigationContainer = styled.div`
   margin-left: -250px;
   overflow-y: auto;
   background: #000;
-  transition: all 300ms ease;
+  transition: all ${DEFAULT_TRANSITION_DURATION}ms ease;
   font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   &.toggled {
@@ -74,7 +78,7 @@ export const HomeLink = styled(Link)`
   display: flex !important;
   font-size: 1.5em;
   align-items: center;
-  height: 44px;
+  height: ${NAVIGATION_HEIGHT}px;
 `;
 
 export const FavoritesLink = styled(Link)`

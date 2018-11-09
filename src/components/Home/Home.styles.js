@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 import { Container } from 'reactstrap';
+import { DEFAULT_TRANSITION_DURATION } from '../../constants';
 
 export const HomeContainer = styled(Container)`
   padding-left: 0px !important;
-  transition: padding 300ms;
+  transition: padding ${DEFAULT_TRANSITION_DURATION}ms;
   }
   &.toggled {
     padding-left: 250px !important;
-    .arrow-icon {
-      transform: rotate(180deg);
+    .fa-utensils {
+      transform: rotate(90deg);
     }
   }
 `;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-// import PropTypes from "prop-types";
+import { array, func, number, object } from 'prop-types';
 import classNames from 'classnames';
 import * as actions from '../../actions';
 import Lightbox from 'react-image-lightbox';
@@ -29,14 +29,15 @@ const FavoritedItem = ({
   const [lightboxIsOpen, showLightbox] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
   const photos = favorite.photos;
+
   const handleDeleteFavorite = (e, favorite) => {
     e.stopPropagation();
     setItemIsUnmounting(true);
     setTimeout(() => {
-      deleteFavorite(favorite);
       if (favorites.length === 1) {
         history.push('/');
       }
+      deleteFavorite(favorite);
     }, ITEM_UNMOUNT_DURATION);
   };
   return (
@@ -93,7 +94,13 @@ const FavoritedItem = ({
   );
 };
 
-FavoritedItem.propTypes = {};
+FavoritedItem.propTypes = {
+  favorites: array,
+  favorite: object,
+  history: object,
+  deleteFavorite: func,
+  itemIndex: number
+};
 
 const mapStateToProps = ({ favorites }) => ({ favorites });
 

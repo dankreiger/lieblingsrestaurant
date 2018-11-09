@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 import Geosuggest from 'react-geosuggest';
+import {
+  NAVIGATION_HEIGHT,
+  DEFAULT_TRANSITION_DURATION
+} from '../../constants';
 
 export const SearchInput = styled(Geosuggest)`
   &.geosuggest {
@@ -74,10 +78,12 @@ export const SearchInput = styled(Geosuggest)`
 `;
 
 export const MapContainer = styled.div`
-  height: calc(100vh - 44px);
+  height: calc(100vh - ${NAVIGATION_HEIGHT}px);
   width: 100vw;
   position: fixed;
-  top: 44px;
+  top: ${NAVIGATION_HEIGHT}px;
   z-index: -1;
   left: 0;
+  transition: padding ${DEFAULT_TRANSITION_DURATION}ms;
+  padding-left: ${props => (props.toggled ? '250px' : '0px')};
 `;

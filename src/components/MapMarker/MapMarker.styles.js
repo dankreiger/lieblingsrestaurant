@@ -1,4 +1,33 @@
 import styled from 'styled-components';
+import { DEFAULT_TRANSITION_DURATION } from '../../constants';
+
+const markerShadow = '3px 3px 6px #333';
+const activeMarkerShadow = '1px 1px 3px #333';
+
+export const CloseIcon = styled.div`
+  font-size: 2em;
+  cursor: pointer;
+  width: 38px;
+  position: absolute;
+  background: rgba(183, 28, 28, 0.9);
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: ${markerShadow};
+  top: -40px;
+  right: -65px;
+  &:active {
+    box-shadow: ${activeMarkerShadow};
+  }
+  &.toolTipVisible {
+    display: none;
+  }
+  i {
+    padding: 8px;
+  }
+`;
 
 export const MapMarkerContainer = styled.div`
   display: flex;
@@ -9,23 +38,28 @@ export const MapMarkerContainer = styled.div`
 export const MapMarkerToolTip = styled.div`
   background: rgba(0, 0, 0, 0.5);
   color: #fff;
-  box-shadow: 3px 3px 6px #333;
+  box-shadow: ${markerShadow};
   position: absolute;
-  width: 130px;
-  height: 130px;
+  width: 80px;
+  height: 80px;
   text-align: center;
   opacity: 0;
-  transition: opacity 250ms;
   font-size: 1.2em;
   font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
     Arial;
   border-radius: 100%;
   overflow: hidden;
+  transition: opacity ${DEFAULT_TRANSITION_DURATION}ms,
+    box-shadow ${DEFAULT_TRANSITION_DURATION}ms,
+    width ${DEFAULT_TRANSITION_DURATION}ms,
+    height ${DEFAULT_TRANSITION_DURATION}ms;
   &:active {
-    box-shadow: 1px 1px 3px #333;
+    box-shadow: ${activeMarkerShadow};
   }
   &.show {
     opacity: 1;
+    width: 130px;
+    height: 130px;
     button {
       pointer-events: auto;
     }
@@ -39,7 +73,8 @@ export const MapMarkerToolTip = styled.div`
     width: 100%;
     border-radius: 0 !important;
     height: 36px;
-    transition: height 250ms;
+    padding-bottom: 15px;
+    transition: all ${DEFAULT_TRANSITION_DURATION}ms;
     &.unfavorited {
       background-color: rgba(33, 150, 243, 0.9);
       border: none;
@@ -62,15 +97,16 @@ export const MapMarkerToolTip = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
     top: calc(50% - 24px);
-    transform: translateY(-50% + 24px);
+    transform: translateY(calc(-50% + 24px));
     opacity: 1;
-    transition: opacity 250ms;
+    transition: opacity ${DEFAULT_TRANSITION_DURATION}ms;
   }
   img {
     width: 100%;
     object-fit: cover;
     border-radius: 10px;
-    transition: transform 250ms, filter 250ms;
+    transition: transform ${DEFAULT_TRANSITION_DURATION}ms,
+      filter ${DEFAULT_TRANSITION_DURATION}ms;
     filter: brightness(50%);
   }
   &:hover {
@@ -80,6 +116,8 @@ export const MapMarkerToolTip = styled.div`
     }
     button {
       height: 100%;
+      font-size: 2em;
+      padding-bottom: 0px;
     }
     .text-label {
       opacity: 0;
