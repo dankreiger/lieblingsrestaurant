@@ -10,14 +10,15 @@ export const MapMarkerToolTip = styled.div`
   background: rgba(0, 0, 0, 0.5);
   color: #fff;
   position: absolute;
-  width: 160px;
+  width: 130px;
+  height: 130px;
   text-align: center;
   opacity: 0;
   transition: opacity 250ms;
   font-size: 1.2em;
   font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
     Arial;
-  border-radius: 10px;
+  border-radius: 100%;
   overflow: hidden;
   &.show {
     opacity: 1;
