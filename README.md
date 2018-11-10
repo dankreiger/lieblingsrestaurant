@@ -83,7 +83,7 @@
 
 ### TODO
 
-- [x] Unit/integration testing on components, actions, and reducers
+- [ ] Finish component unit/intergration tests
 - [ ] Add styleguide
 - [x] Static type all the components (propTypes)
 - [x] Make selecting / favoriting more user friendly bzw. allow user to unselect items that aren't favorited

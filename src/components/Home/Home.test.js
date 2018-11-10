@@ -1,38 +1,18 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-import { Provider } from 'react-redux';
-import configureStore from 'redux-mock-store';
 
 import Home from './Home';
 import SimpleMap from '../SimpleMap/SimpleMap';
 import { dummyNavigation, dummyFavorites } from '../../utils/dummyData';
+import { setupReduxConnectedComponent } from '../../utils/testHelpers';
 
 jest.mock('../SimpleMap/helpers/gmapFunctions.js');
-
-const setupReduxConnectedComponent = (
-  favorites = [],
-  navigation = { toggled: false }
-) => {
-  const middlewares = [];
-  const mockStore = configureStore(middlewares);
-  const store = mockStore({ favorites, navigation });
-  return (
-    <Provider store={store}>
-      <Home />
-    </Provider>
-  );
-};
 
 describe('Home', () => {
   let homeComponent;
 
   describe('rendering', () => {
-    const mockStore = configureStore();
-    homeComponent = shallow(
-      <Provider store={mockStore({})}>
-        <Home />
-      </Provider>
-    );
+    homeComponent = setupReduxConnectedComponent(<Home />, 'shallow');
+
     test('renders as expected', () => {
       expect(homeComponent).toBeTruthy();
       expect(homeComponent.length).toBe(1);
@@ -41,8 +21,11 @@ describe('Home', () => {
   });
 
   describe('structure', () => {
-    const homeComponent = mount(
-      setupReduxConnectedComponent(dummyFavorites, dummyNavigation)
+    const homeComponent = setupReduxConnectedComponent(
+      <Home />,
+      'mount',
+      dummyFavorites,
+      dummyNavigation
     );
 
     afterEach(() => {
