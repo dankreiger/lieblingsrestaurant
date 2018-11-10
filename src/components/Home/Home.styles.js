@@ -12,4 +12,11 @@ export const HomeContainer = styled(Container)`
       transform: rotate(90deg);
     }
   }
+  .offline-message {
+    display: flex;
+    font-size: 1.5em;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+  }
 `;

@@ -4,6 +4,7 @@ import { func, number, object } from 'prop-types';
 import classNames from 'classnames';
 import * as actions from '../../actions';
 import Lightbox from 'react-image-lightbox';
+import { Offline, Online } from 'react-detect-offline';
 
 import {
   Button,
@@ -78,18 +79,25 @@ const FavoritedItem = ({
         </CardImgOverlay>
       </FavoritedItemContainer>
       {lightboxIsOpen && (
-        <Lightbox
-          mainSrc={photos[photoIndex]}
-          nextSrc={photos[(photoIndex + 1) % photos.length]}
-          prevSrc={photos[(photoIndex + photos.length - 1) % photos.length]}
-          onCloseRequest={() => showLightbox(false)}
-          onMovePrevRequest={() =>
-            setPhotoIndex((photoIndex + photos.length - 1) % photos.length)
-          }
-          onMoveNextRequest={() =>
-            setPhotoIndex((photoIndex + 1) % photos.length)
-          }
-        />
+        <>
+          <Online>
+            <Lightbox
+              mainSrc={photos[photoIndex]}
+              nextSrc={photos[(photoIndex + 1) % photos.length]}
+              prevSrc={photos[(photoIndex + photos.length - 1) % photos.length]}
+              onCloseRequest={() => showLightbox(false)}
+              onMovePrevRequest={() =>
+                setPhotoIndex((photoIndex + photos.length - 1) % photos.length)
+              }
+              onMoveNextRequest={() =>
+                setPhotoIndex((photoIndex + 1) % photos.length)
+              }
+            />
+          </Online>
+          <Offline>
+            Content is unavailable. Please check your internet connection.
+          </Offline>
+        </>
       )}
     </>
   );

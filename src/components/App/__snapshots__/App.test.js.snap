@@ -15,7 +15,7 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "function",
+    "nodeType": "host",
     "props": Object {
       "children": Array [
         <Connect(Navigation) />,
@@ -94,32 +94,13 @@ ShallowWrapper {
         "type": "main",
       },
     ],
-    "type": Object {
-      "$$typeof": Symbol(react.forward_ref),
-      "attrs": undefined,
-      "componentStyle": ComponentStyle {
-        "componentId": "sc-fjdhpX",
-        "isStatic": true,
-        "rules": Array [
-          "
-  /* height: 100vh; */
-",
-        ],
-      },
-      "displayName": "styled.div",
-      "render": [Function],
-      "styledComponentId": "sc-fjdhpX",
-      "target": "div",
-      "toString": [Function],
-      "warnTooManyClasses": [Function],
-      "withComponent": [Function],
-    },
+    "type": "div",
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "function",
+      "nodeType": "host",
       "props": Object {
         "children": Array [
           <Connect(Navigation) />,
@@ -198,26 +179,7 @@ ShallowWrapper {
           "type": "main",
         },
       ],
-      "type": Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "attrs": undefined,
-        "componentStyle": ComponentStyle {
-          "componentId": "sc-fjdhpX",
-          "isStatic": true,
-          "rules": Array [
-            "
-  /* height: 100vh; */
-",
-          ],
-        },
-        "displayName": "styled.div",
-        "render": [Function],
-        "styledComponentId": "sc-fjdhpX",
-        "target": "div",
-        "toString": [Function],
-        "warnTooManyClasses": [Function],
-        "withComponent": [Function],
-      },
+      "type": "div",
     },
   ],
   Symbol(enzyme.__options__): Object {

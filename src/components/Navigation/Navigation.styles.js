@@ -15,8 +15,6 @@ export const NavigationContainer = styled.div`
   overflow-y: auto;
   background: #000;
   transition: all ${DEFAULT_TRANSITION_DURATION}ms ease;
-  font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   &.toggled {
     width: 250px;
   }

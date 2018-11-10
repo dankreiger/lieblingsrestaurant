@@ -49,8 +49,6 @@ export const MapMarkerToolTip = styled.div`
   text-align: center;
   opacity: 0;
   font-size: 1.2em;
-  font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
-    Arial;
   border-radius: 100%;
   overflow: hidden;
   transition: opacity ${DEFAULT_TRANSITION_DURATION}ms,
