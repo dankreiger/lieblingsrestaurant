@@ -74,7 +74,7 @@
 - [ ] Add styleguide
 - [x] Static type all the components (propTypes)
 - [x] Make selecting / favoriting more user friendly bzw. allow user to unselect items that aren't favorited
-- [ ] Filter search to restaurants only
+- [x] Filter search to restaurants only
 - [x] Make sure redux state is [immutable](https://redux.js.org/recipes/structuringreducers/immutableupdatepatterns)
 - [ ] Refactor unnecessary connections to the redux store
 - [x] Make sure favorite items sort on click and not on re-render
