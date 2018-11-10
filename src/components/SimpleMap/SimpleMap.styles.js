@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import Geosuggest from 'react-geosuggest';
+import { Popover } from 'reactstrap';
 import {
   NAVIGATION_HEIGHT,
   DEFAULT_TRANSITION_DURATION
 } from '../../constants';
+import { DANGER_COLOR } from '../../constants/colorsConstants';
 
 export const SearchInput = styled(Geosuggest)`
   &.geosuggest {
@@ -15,12 +17,16 @@ export const SearchInput = styled(Geosuggest)`
     left: 0;
     position: absolute;
   }
+  .geosuggest__suggests-wrapper {
+    display: ${({ showSuggestions }) => (showSuggestions ? 'block' : 'none')};
+  }
   .geosuggest__input {
     width: 100%;
-    border: 2px solid transparent;
+    border: 2px solid
+      ${({ invalidSelection }) =>
+        invalidSelection ? DANGER_COLOR : 'transparent'};
     box-shadow: 0 0 1px #3d464d;
     padding: 0.5em 1em;
-    -webkit-transition: border 0.2s, box-shadow 0.2s;
     transition: border 0.2s, box-shadow 0.2s;
   }
   .geosuggest__input:focus {
@@ -74,6 +80,17 @@ export const SearchInput = styled(Geosuggest)`
   }
   .geosuggest__item__matched-text {
     font-weight: bold;
+  }
+`;
+
+export const StyledPopover = styled(Popover)`
+  .popover-inner {
+    border: 1px solid ${DANGER_COLOR};
+  }
+  .arrow {
+    &:before {
+      border-bottom-color: ${DANGER_COLOR} !important;
+    }
   }
 `;
 

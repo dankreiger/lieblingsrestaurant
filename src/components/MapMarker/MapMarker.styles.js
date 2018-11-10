@@ -1,25 +1,29 @@
 import styled from 'styled-components';
-import { DEFAULT_TRANSITION_DURATION } from '../../constants';
-
-const markerShadow = '3px 3px 6px #333';
-const activeMarkerShadow = '1px 1px 3px #333';
+import {
+  DEFAULT_TRANSITION_DURATION,
+  DANGER_COLOR,
+  PRIMARY_COLOR,
+  OVERLAY_BG_COLOR,
+  ACTIVE_MARKER_SHADOW,
+  MARKER_SHADOW
+} from '../../constants';
 
 export const CloseIcon = styled.div`
   font-size: 2em;
   cursor: pointer;
   width: 38px;
   position: absolute;
-  background: rgba(183, 28, 28, 0.9);
+  background: ${DANGER_COLOR};
   border-radius: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
-  box-shadow: ${markerShadow};
+  box-shadow: ${MARKER_SHADOW};
   top: -40px;
   right: -65px;
   &:active {
-    box-shadow: ${activeMarkerShadow};
+    box-shadow: ${ACTIVE_MARKER_SHADOW};
   }
   &.toolTipVisible {
     display: none;
@@ -36,9 +40,9 @@ export const MapMarkerContainer = styled.div`
 `;
 
 export const MapMarkerToolTip = styled.div`
-  background: rgba(0, 0, 0, 0.5);
+  background: ${OVERLAY_BG_COLOR};
   color: #fff;
-  box-shadow: ${markerShadow};
+  box-shadow: ${MARKER_SHADOW};
   position: absolute;
   width: 80px;
   height: 80px;
@@ -54,7 +58,7 @@ export const MapMarkerToolTip = styled.div`
     width ${DEFAULT_TRANSITION_DURATION}ms,
     height ${DEFAULT_TRANSITION_DURATION}ms;
   &:active {
-    box-shadow: ${activeMarkerShadow};
+    box-shadow: ${ACTIVE_MARKER_SHADOW};
   }
   &.show {
     opacity: 1;
@@ -76,11 +80,11 @@ export const MapMarkerToolTip = styled.div`
     padding-bottom: 15px;
     transition: all ${DEFAULT_TRANSITION_DURATION}ms;
     &.unfavorited {
-      background-color: rgba(33, 150, 243, 0.9);
+      background-color: ${PRIMARY_COLOR};
       border: none;
     }
     &.favorited {
-      background-color: rgba(183, 28, 28, 0.9);
+      background-color: ${DANGER_COLOR};
       border: none;
     }
   }

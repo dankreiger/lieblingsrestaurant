@@ -1,13 +1,23 @@
-/* favorites */
-export const ADD_FAVORITE = 'ADD_FAVORITE';
-export const SET_RATING = 'SET_RATING';
-export const DELETE_FAVORITE = 'DELETE_FAVORITE';
+import * as actionsConstants from './actionsConstants';
+import * as colorsConstants from './colorsConstants';
+import * as valuesConstants from './valuesConstants';
 
-/* navigation */
-export const TOGGLE_NAVIGATION = 'TOGGLE_NAVIGATION';
-export const CLOSE_NAVIGATION = 'CLOSE_NAVIGATION';
-
-/* misc */
-export const BERLIN = { lat: 52.520008, lng: 13.404954 };
-export const DEFAULT_TRANSITION_DURATION = 250;
-export const NAVIGATION_HEIGHT = 44;
+export const {
+  ADD_FAVORITE,
+  SET_RATING,
+  DELETE_FAVORITE,
+  TOGGLE_NAVIGATION,
+  CLOSE_NAVIGATION
+} = actionsConstants;
+export const {
+  DANGER_COLOR,
+  PRIMARY_COLOR,
+  OVERLAY_BG_COLOR,
+  ACTIVE_MARKER_SHADOW,
+  MARKER_SHADOW
+} = colorsConstants;
+export const {
+  BERLIN,
+  DEFAULT_TRANSITION_DURATION,
+  NAVIGATION_HEIGHT
+} = valuesConstants;

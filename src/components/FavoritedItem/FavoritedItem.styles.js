@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Card } from 'reactstrap';
-import { DEFAULT_TRANSITION_DURATION } from '../../constants';
+import { DEFAULT_TRANSITION_DURATION, OVERLAY_BG_COLOR } from '../../constants';
 
 export const FavoritedItemContainer = styled(Card)`
   cursor: pointer;
@@ -34,7 +34,7 @@ export const FavoritedItemContainer = styled(Card)`
     height: 100%;
   }
   .card-img-overlay {
-    background: rgba(0, 0, 0, 0.5);
+    background: ${OVERLAY_BG_COLOR};
     display: flex;
     flex-direction: column;
     justify-content: center;

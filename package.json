@@ -27,6 +27,7 @@
     "google-map-react": "1.0.9",
     "lodash.isempty": "4.4.0",
     "lodash.throttle": "4.1.1",
+    "popper.js": "1.14.5",
     "react": "^16.7.0-alpha.0",
     "react-dom": "^16.7.0-alpha.0",
     "react-geosuggest": "2.9.0",

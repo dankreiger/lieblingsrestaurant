@@ -49,32 +49,19 @@
    $ chmod +x scripts/*.sh
    ```
 
-2. Install dependencies with [yarn](https://yarnpkg.com/en/) or [npm](https://www.npmjs.com/)
-
-   yarn:
+2. Install dependencies with [yarn](https://yarnpkg.com/en/)  (you can also use `npm`)
 
    ```sh
    $ yarn
    ```
 
-   npm:
 
-   ```sh
-   $ npm install
-   ```
+3. Start server
 
-3. Start server with [yarn](https://yarnpkg.com/en/) or [npm](https://www.npmjs.com/)
-
-
-    yarn:
     ```sh
     $ yarn start
     ```
 
-    npm:
-    ```sh
-    $ npm start
-    ```
 
 4. Enter your Google Maps Api key at the CLI prompt. Make sure your key has the Google Places API enabled.
 5. Browser will open automatically on http://localhost:3000/
