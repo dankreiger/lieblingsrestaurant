@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 import { Card } from 'reactstrap';
-import {
-  ITEM_UNMOUNT_DURATION,
-  DEFAULT_TRANSITION_DURATION
-} from '../../constants';
+import { DEFAULT_TRANSITION_DURATION } from '../../constants';
 
 export const FavoritedItemContainer = styled(Card)`
   cursor: pointer;
@@ -12,7 +9,7 @@ export const FavoritedItemContainer = styled(Card)`
   border-radius: 0 !important;
   border: none !important;
   opacity: 1;
-  transition: opacity ${ITEM_UNMOUNT_DURATION}ms;
+  transition: opacity ${DEFAULT_TRANSITION_DURATION}ms;
   &.itemIsUnmounting {
     opacity: 0;
   }

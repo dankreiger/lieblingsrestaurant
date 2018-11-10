@@ -1,4 +1,5 @@
 import React from 'react';
+import { func } from 'prop-types';
 import { connect } from 'react-redux';
 import * as actions from './../../actions';
 import { Row, Col } from 'reactstrap';
@@ -6,9 +7,11 @@ import SimpleMap from '../SimpleMap/SimpleMap';
 import { HomeContainer } from './Home.styles';
 import classNames from 'classnames';
 import NavigationToggler from '../NavigationToggler/NavigationToggler';
+import { favoritesTypes } from '../../reducers/types/favorites.types';
+import { navigationTypes } from '../../reducers/types/navigation.types';
 
-const Home = ({ favorites, toggleNavigation, navigationToggled }) => (
-  <HomeContainer fluid className={classNames({ toggled: navigationToggled })}>
+const Home = ({ favorites, toggleNavigation, navigation }) => (
+  <HomeContainer fluid className={classNames({ toggled: navigation.toggled })}>
     <Row noGutters>
       <Col className="d-flex">
         {favorites.length > 0 && (
@@ -28,9 +31,15 @@ const Home = ({ favorites, toggleNavigation, navigationToggled }) => (
   </HomeContainer>
 );
 
+Home.propTypes = {
+  ...favoritesTypes,
+  ...navigationTypes,
+  toggleNavigation: func
+};
+
 const mapStateToProps = ({ favorites, navigation }) => ({
   favorites,
-  navigationToggled: navigation.toggled
+  navigation
 });
 
 export default connect(

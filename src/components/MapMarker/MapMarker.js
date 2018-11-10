@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import { array, func, object } from 'prop-types';
+import { func, object } from 'prop-types';
 import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
 
@@ -12,6 +12,8 @@ import {
 
 import * as actions from '../../actions';
 import { getPhoto } from '../../utils/functions';
+import { favoritesTypes } from '../../reducers/types/favorites.types';
+import { navigationTypes } from '../../reducers/types/navigation.types';
 
 // please remove some of these unnecessary props
 const MapMarker = ({
@@ -20,6 +22,7 @@ const MapMarker = ({
   place,
   addFavorite,
   deleteFavorite,
+  navigation,
   removePlace
 }) => {
   const [currentFavoriteStatus, setCurrentFavoriteStatus] = useState(
@@ -35,12 +38,12 @@ const MapMarker = ({
 
   const handleDeleteFavorite = e => {
     e.stopPropagation();
-    if (favorites.length === 1) {
-      closeNavigation();
-    }
     deleteFavorite(place);
     setCurrentFavoriteStatus(false);
     toggleToolTipVisibility(false);
+    if (navigation.toggled && favorites.length === 1) {
+      closeNavigation();
+    }
   };
   return (
     <>
@@ -86,14 +89,18 @@ const MapMarker = ({
 
 MapMarker.propTypes = {
   closeNavigation: func,
-  favorites: array,
+  ...favoritesTypes,
+  ...navigationTypes,
   place: object,
   addFavorite: func,
   deleteFavorite: func,
   removePlace: func
 };
 
-const mapStateToProps = ({ favorites }) => ({ favorites });
+const mapStateToProps = ({ favorites, navigation }) => ({
+  favorites,
+  navigation
+});
 
 export default connect(
   mapStateToProps,

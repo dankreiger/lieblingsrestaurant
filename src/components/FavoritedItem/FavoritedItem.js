@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { array, func, number, object } from 'prop-types';
+import { func, number, object } from 'prop-types';
 import classNames from 'classnames';
 import * as actions from '../../actions';
 import Lightbox from 'react-image-lightbox';
@@ -16,7 +16,8 @@ import {
 import { getPhoto, cardinalize } from '../../utils/functions';
 import { FavoritedItemContainer, FooterDiv } from './FavoritedItem.styles';
 import Stars from '../Stars/Stars';
-import { ITEM_UNMOUNT_DURATION } from '../../constants';
+import { DEFAULT_TRANSITION_DURATION } from '../../constants';
+import { favoritesTypes } from '../../reducers/types/favorites.types';
 
 const FavoritedItem = ({
   favorite,
@@ -34,11 +35,11 @@ const FavoritedItem = ({
     e.stopPropagation();
     setItemIsUnmounting(true);
     deleteFavorite(favorite);
-    setTimeout(() => {
-      if (favorites.length === 1) {
+    if (favorites.length === 1) {
+      setTimeout(() => {
         history.push('/');
-      }
-    }, ITEM_UNMOUNT_DURATION);
+      }, DEFAULT_TRANSITION_DURATION);
+    }
   };
   return (
     <>
@@ -95,7 +96,7 @@ const FavoritedItem = ({
 };
 
 FavoritedItem.propTypes = {
-  favorites: array,
+  ...favoritesTypes,
   favorite: object,
   history: object,
   deleteFavorite: func,

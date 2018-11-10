@@ -1,9 +1,11 @@
 import styled from 'styled-components';
-import { fixedTopButton } from '../../utils/functions';
 import { DEFAULT_TRANSITION_DURATION } from '../../constants';
+import { fixedTopButton } from '../../utils/styleVars';
 
 export const NavigationTogglerContainer = styled.button`
-  ${fixedTopButton()} .fa-utensils {
+  ${fixedTopButton()};
+
+  .fa-utensils {
     transition: transform ${DEFAULT_TRANSITION_DURATION}ms
       ${DEFAULT_TRANSITION_DURATION}ms;
   }

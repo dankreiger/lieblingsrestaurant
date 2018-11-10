@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { Badge, Container, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { fixedTopButton } from '../../utils/functions';
 import {
   NAVIGATION_HEIGHT,
   DEFAULT_TRANSITION_DURATION
 } from '../../constants';
+import { fixedTopButton } from '../../utils/styleVars';
 
 export const InfoContainer = styled(Container)`
   transition: padding ${DEFAULT_TRANSITION_DURATION}ms;
