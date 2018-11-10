@@ -1,3 +1,5 @@
+import idx from 'idx';
+
 export const pluralize = (word, items) => {
   if (!items) {
     return `0 ${word}s`;
@@ -12,14 +14,14 @@ export const getPhoto = item => {
   if (item.photo) {
     return item.photo;
   } else if (item.gmaps) {
-    return item.gmaps.photos ? item.gmaps.photos[0].getUrl() : item.gmaps.icon;
+    return idx(item, _ => _.gmaps.photos[0].getUrl()) || item.gmaps.icon;
   } else {
     return null;
   }
 };
 
 export const fetchAllPhotos = item => {
-  if (item.gmaps && item.gmaps.photos) {
+  if (idx(item, _ => _.gmaps.photos)) {
     return item.gmaps.photos.map(photo => {
       try {
         return photo.getUrl();
