@@ -12,7 +12,7 @@ import * as actions from '../../actions';
 const Navigation = ({ navigation, toggleNavigation }) => {
   const resetApp = event => {
     event.preventDefault();
-    localStorage.removeItem('state');
+    localStorage.removeItem('favoriteRestaurants');
     return (window.location.href = '/'); // find a better way
   };
   return (

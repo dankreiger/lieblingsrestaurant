@@ -1,23 +1,19 @@
-/*global google */
-
 import React, { Component } from 'react';
 import { array, object } from 'prop-types';
 import { connect } from 'react-redux';
 import GoogleMapReact from 'google-map-react';
 import { apiIsLoaded, appendGmapScript } from './helpers/gmapFunctions';
-import { PopoverBody } from 'reactstrap';
 import MapMarker from '../MapMarker/MapMarker';
-import { SearchInput, MapContainer, StyledPopover } from './SimpleMap.styles';
+import { MapContainer } from './SimpleMap.styles';
 import { BERLIN } from '../../constants';
+import MapSearchInput from '../MapSearchInput/MapSearchInput';
 
 // TODO: Improve this component!!!
 class SimpleMap extends Component {
   state = {
     places: [],
     currentMapInfo: null,
-    mapReady: false,
-    invalidSelection: false,
-    showSuggestions: false
+    mapReady: false
   };
 
   componentDidMount() {
@@ -35,35 +31,8 @@ class SimpleMap extends Component {
 
   handleMapInstance = (map, maps, places) => {
     apiIsLoaded(map, maps, places);
-    this.setState({ currentMapInfo: { map, maps }, places });
-  };
-
-  handleSuggestSelect = newPlace => {
-    if (!newPlace) {
-      return;
-    }
-
-    // validate that the selection is a restaurant
-    if (newPlace.gmaps && newPlace.gmaps.types && newPlace.gmaps.types.length) {
-      this.setState(
-        { invalidSelection: !newPlace.gmaps.types.includes('restaurant') },
-        () => {
-          // return if the selection isn't a restaurant
-          if (this.state.invalidSelection) {
-            return;
-          } else {
-            const { map, maps } = this.state.currentMapInfo;
-            const { places } = this.state;
-
-            if (!places.some(place => place.placeId === newPlace.placeId)) {
-              this.setState({ places: [...places, newPlace] }, () => {
-                this.handleMapInstance(map, maps, this.state.places);
-              });
-            }
-          }
-        }
-      );
-    }
+    this.setState({ places });
+    this.setState({ currentMapInfo: { map, maps } });
   };
 
   removePlace = placeToRemove => {
@@ -74,53 +43,16 @@ class SimpleMap extends Component {
     this.setState({ places: newPlaces });
   };
 
-  handleFocus = () => {
-    this.setState({ showSuggestions: false });
-    this._geoSuggest.clear();
-    if (this.state.invalidSelection) {
-      this.setState({ invalidSelection: false });
-    }
-
-    // prevent suggestions dropdown from opening abruptly and unnecessarily - send a PR
-    setTimeout(() => {
-      this.setState({ showSuggestions: true });
-    }, 1000);
-  };
-
   render() {
-    const {
-      places,
-      currentMapInfo,
-      invalidSelection,
-      mapReady,
-      showSuggestions
-    } = this.state;
+    const { places, currentMapInfo, mapReady } = this.state;
     return (
       <>
         {currentMapInfo && (
-          <>
-            <SearchInput
-              ref={el => (this._geoSuggest = el)}
-              onFocus={this.handleFocus}
-              placeholder="Search for a restaurant..."
-              onSuggestSelect={this.handleSuggestSelect}
-              location={new google.maps.LatLng(BERLIN.lat, BERLIN.lng)}
-              radius={2000}
-              types={['establishment']}
-              invalidSelection={invalidSelection}
-              showSuggestions={showSuggestions}
-              id="invalidSelectionPopup"
-            />
-            <StyledPopover
-              placement="bottom"
-              isOpen={invalidSelection}
-              target="invalidSelectionPopup"
-            >
-              <PopoverBody>
-                Sorry this is not a restaurant. Please try your search again.
-              </PopoverBody>
-            </StyledPopover>
-          </>
+          <MapSearchInput
+            handleMapInstance={this.handleMapInstance}
+            places={this.state.places}
+            currentMapInfo={currentMapInfo}
+          />
         )}
 
         <MapContainer {...this.props.navigation}>

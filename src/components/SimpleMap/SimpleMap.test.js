@@ -2,7 +2,7 @@ import React from 'react';
 import SimpleMap from './SimpleMap';
 import { setupReduxConnectedComponent } from '../../utils/testHelpers';
 
-jest.mock('../SimpleMap/helpers/gmapFunctions.js');
+jest.mock('./helpers/gmapFunctions.js');
 
 describe('SimpleMap', () => {
   let simpleMapComponent;
