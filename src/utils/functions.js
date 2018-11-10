@@ -21,7 +21,7 @@ export const getPhoto = item => {
 };
 
 export const fetchAllPhotos = item => {
-  if (idx(item, _ => _.gmaps.photos)) {
+  if (idx(item, _ => _.gmaps.photos.length)) {
     return item.gmaps.photos.map(photo => {
       try {
         return photo.getUrl();

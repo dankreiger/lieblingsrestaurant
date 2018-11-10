@@ -30,7 +30,6 @@ const MapSearchInput = ({ currentMapInfo, handleMapInstance, places }) => {
       return;
     }
     const { map, maps } = currentMapInfo;
-    console.log(idx(newPlace, _ => _.gmaps.types.length));
 
     if (idx(newPlace, _ => _.gmaps.types.length)) {
       const isRestaurant = newPlace.gmaps.types.includes('restaurant');
