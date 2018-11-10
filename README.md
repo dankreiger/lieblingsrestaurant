@@ -83,10 +83,10 @@
 
 ### TODO
 
-- [ ] Unit/integration testing on components, actions, and reducers
+- [x] Unit/integration testing on components, actions, and reducers
 - [ ] Add styleguide
-- [ ] Static type all the components
-- [ ] Make selecting / favoriting more user friendly bzw. allow user to unselect items that aren't favorited
+- [x] Static type all the components (propTypes)
+- [x] Make selecting / favoriting more user friendly bzw. allow user to unselect items that aren't favorited
 - [ ] Filter search to restaurants only
 - [x] Make sure redux state is [immutable](https://redux.js.org/recipes/structuringreducers/immutableupdatepatterns)
 - [ ] Refactor unnecessary connections to the redux store
