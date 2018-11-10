@@ -8,14 +8,14 @@ import { PopoverBody } from 'reactstrap';
 import idx from 'idx';
 
 const MapSearchInput = ({ currentMapInfo, handleMapInstance, places }) => {
-  const [invalidSelection, setSelectionValidity] = useState(false);
+  const [validSelection, setSelectionValidity] = useState(true);
   const [showSuggestions, setSuggestionsVisibility] = useState(false);
   const inputContainer = useRef(null);
 
   const handleFocus = () => {
     setSuggestionsVisibility(false);
     inputContainer.current.clear();
-    if (invalidSelection) {
+    if (!validSelection) {
       setSelectionValidity(true);
     }
     // prevent suggestions dropdown from opening abruptly and unnecessarily
@@ -33,9 +33,9 @@ const MapSearchInput = ({ currentMapInfo, handleMapInstance, places }) => {
     console.log(idx(newPlace, _ => _.gmaps.types.length));
 
     if (idx(newPlace, _ => _.gmaps.types.length)) {
-      const validSelection = newPlace.gmaps.types.includes('restaurant');
-      setSelectionValidity(!validSelection);
-      if (!validSelection) {
+      const isRestaurant = newPlace.gmaps.types.includes('restaurant');
+      setSelectionValidity(isRestaurant);
+      if (!isRestaurant) {
         return;
       } else {
         if (!places.some(place => place.placeId === newPlace.placeId)) {
@@ -54,13 +54,13 @@ const MapSearchInput = ({ currentMapInfo, handleMapInstance, places }) => {
         location={new google.maps.LatLng(BERLIN.lat, BERLIN.lng)}
         radius={2000}
         types={['establishment']}
-        invalidSelection={invalidSelection}
+        validSelection={validSelection}
         showSuggestions={showSuggestions}
         id="invalidSelectionPopup"
       />
       <StyledPopover
         placement="bottom"
-        isOpen={invalidSelection}
+        isOpen={!validSelection}
         target="invalidSelectionPopup"
       >
         <PopoverBody>

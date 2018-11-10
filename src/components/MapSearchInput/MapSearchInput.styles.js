@@ -19,15 +19,14 @@ export const SearchInput = styled(Geosuggest)`
   .geosuggest__input {
     width: 100%;
     border: 2px solid
-      ${({ invalidSelection }) =>
-        invalidSelection ? DANGER_COLOR : 'transparent'};
+      ${({ validSelection }) => (validSelection ? 'transparent' : DANGER_COLOR)};
     box-shadow: 0 0 1px #3d464d;
     padding: 0.5em 1em;
     transition: border 0.2s, box-shadow 0.2s;
-  }
-  .geosuggest__input:focus {
-    border-color: #267dc0;
-    box-shadow: 0 0 0 transparent;
+    &:focus {
+      border-color: #267dc0;
+      box-shadow: 0 0 0 transparent;
+    }
   }
   .geosuggest__suggests {
     position: absolute;
@@ -61,19 +60,20 @@ export const SearchInput = styled(Geosuggest)`
     font-size: 1rem;
     padding: 0.5em 0.65em;
     cursor: pointer;
-  }
-  .geosuggest__item:hover,
-  .geosuggest__item:focus {
-    background: #f5f5f5;
+    &:hover,
+    &:focus {
+      background: #f5f5f5;
+    }
   }
   .geosuggest__item--active {
     background: #267dc0;
     color: #fff;
+    &:hover,
+    &:focus {
+      background: #ccc;
+    }
   }
-  .geosuggest__item--active:hover,
-  .geosuggest__item--active:focus {
-    background: #ccc;
-  }
+
   .geosuggest__item__matched-text {
     font-weight: bold;
   }
