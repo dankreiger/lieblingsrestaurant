@@ -1,4 +1,5 @@
 import React from 'react';
+import { Offline, Online } from 'react-detect-offline';
 import { func } from 'prop-types';
 import { connect } from 'react-redux';
 import * as actions from './../../actions';
@@ -25,7 +26,14 @@ const Home = ({ favorites, toggleNavigation, navigation }) => (
         xs={favorites.length > 0 ? 8 : 12}
         sm={favorites.length > 0 ? 10 : 12}
       >
-        <SimpleMap />
+        <Online>
+          <SimpleMap />
+        </Online>
+        <Offline>
+          <div className="offline-message">
+            Please check your internet connection.
+          </div>
+        </Offline>
       </Col>
     </Row>
   </HomeContainer>

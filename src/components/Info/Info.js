@@ -19,10 +19,6 @@ const Info = ({ favorites, history, toggleNavigation, navigationToggled }) => {
           <HomeButtonLink to="/" onClick={toggleNavigation}>
             <i className="fas fa-home" />
           </HomeButtonLink>
-          {/* <NavigationToggler
-            favorites={favorites}
-            toggleNavigation={toggleNavigation}
-          /> */}
         </Col>
       </Row>
       {favorites && (
