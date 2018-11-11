@@ -43,7 +43,7 @@
 
    _Note: First time usage_
 
-   Make start script executable:
+   Make start script executable (script will create a private `.env.local` file containing your API key):
 
    ```sh
    $ chmod +x scripts/*.sh

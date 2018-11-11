@@ -12,10 +12,10 @@ import {
   MapMarkerToolTip
 } from './MapMarker.styles';
 
-import * as actions from '../../actions';
-import { getPhoto } from '../../utils/functions';
-import { favoritesTypes } from '../../reducers/types/favorites.types';
-import { navigationTypes } from '../../reducers/types/navigation.types';
+import * as actions from 'actions';
+import { getPhoto } from 'utils/functions';
+import { favoritesTypes } from 'reducers/types/favorites.types';
+import { navigationTypes } from 'reducers/types/navigation.types';
 
 // please remove some of these unnecessary props
 const MapMarker = ({

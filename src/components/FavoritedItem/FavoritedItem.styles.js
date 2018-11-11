@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Card } from 'reactstrap';
-import { DEFAULT_TRANSITION_DURATION, OVERLAY_BG_COLOR } from '../../constants';
+import { DEFAULT_TRANSITION_DURATION, OVERLAY_BG_COLOR } from 'constants/index';
 
 export const FavoritedItemContainer = styled(Card)`
   cursor: pointer;

@@ -1,6 +1,6 @@
 import React from 'react';
 import SimpleMap from './SimpleMap';
-import { setupReduxConnectedComponent } from '../../utils/testHelpers';
+import { setupReduxConnectedComponent } from 'utils/testHelpers';
 
 jest.mock('./helpers/gmapFunctions.js');
 
@@ -11,7 +11,6 @@ describe('SimpleMap', () => {
     simpleMapComponent = setupReduxConnectedComponent(<SimpleMap />, 'shallow');
 
     test('renders as expected', () => {
-      expect(simpleMapComponent).toBeTruthy();
       expect(simpleMapComponent.length).toBe(1);
       expect(simpleMapComponent).toMatchSnapshot();
     });

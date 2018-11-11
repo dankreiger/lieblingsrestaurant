@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Home from '../Home/Home';
-import Info from '../Info/Info';
-import Navigation from '../Navigation/Navigation';
+import Home from 'components/Home/Home';
+import Info from 'components/Info/Info';
+import Navigation from 'components/Navigation/Navigation';
 
 const App = () => (
   <div>

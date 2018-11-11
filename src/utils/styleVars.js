@@ -1,4 +1,4 @@
-import { NAVIGATION_HEIGHT } from '../constants';
+import { NAVIGATION_HEIGHT } from 'constants/index';
 
 export const fixedTopButton = () =>
   `

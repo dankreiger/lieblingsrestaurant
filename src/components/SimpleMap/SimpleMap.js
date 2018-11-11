@@ -3,11 +3,11 @@ import { array, object } from 'prop-types';
 import { connect } from 'react-redux';
 import GoogleMapReact from 'google-map-react';
 import { positionGoogleMap, appendGmapScript } from './helpers/gmapFunctions';
-import MapMarker from '../MapMarker/MapMarker';
+import MapMarker from 'components/MapMarker/MapMarker';
 import { MapContainer } from './SimpleMap.styles';
-import { BERLIN } from '../../constants';
-import MapSearchInput from '../MapSearchInput/MapSearchInput';
+import { BERLIN } from 'constants/index';
 import { mapOptions } from './helpers/gmapOptions';
+import MapMenu from 'components/MapMenu/MapMenu';
 
 // TODO: Improve this component!!!
 class SimpleMap extends Component {
@@ -19,9 +19,7 @@ class SimpleMap extends Component {
 
   componentDidMount() {
     if (!window.google) {
-      let s = appendGmapScript();
-
-      s.addEventListener('load', () => {
+      appendGmapScript().addEventListener('load', () => {
         this.setState({ mapReady: true });
       });
     } else {
@@ -52,10 +50,10 @@ class SimpleMap extends Component {
     return (
       <>
         {currentMapInfo && (
-          <MapSearchInput
+          <MapMenu
+            currentMapInfo={currentMapInfo}
             handleMapInstance={this.handleMapInstance}
             places={this.state.places}
-            currentMapInfo={currentMapInfo}
           />
         )}
 

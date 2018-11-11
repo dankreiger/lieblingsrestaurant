@@ -1,6 +1,6 @@
-import favoritesReducer from './../favoritesReducer';
-import { ADD_FAVORITE, DELETE_FAVORITE, SET_RATING } from './../../constants';
-import { dummyFavorites } from '../../utils/dummyData';
+import favoritesReducer from 'reducers/favoritesReducer';
+import { ADD_FAVORITE, DELETE_FAVORITE, SET_RATING } from 'constants/index';
+import { dummyFavorites } from 'utils/dummyData';
 
 describe('favoritesReducer', () => {
   describe('actions of type ADD_FAVORITE', () => {

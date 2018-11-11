@@ -4,7 +4,7 @@ import {
   NAVIGATION_HEIGHT,
   DEFAULT_TRANSITION_DURATION,
   NAV_SHADOW
-} from '../../constants';
+} from 'constants/index';
 
 export const NavigationContainer = styled.div`
   z-index: 1000;

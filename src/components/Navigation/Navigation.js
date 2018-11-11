@@ -10,7 +10,7 @@ import {
   HomeLink,
   RemoveLink
 } from './Navigation.styles';
-import * as actions from '../../actions';
+import * as actions from 'actions';
 
 const Navigation = ({ navigation, toggleNavigation }) => {
   const resetApp = event => {

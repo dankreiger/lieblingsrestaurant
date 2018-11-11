@@ -1,7 +1,7 @@
 import React from 'react';
 import MapSearchInput from './MapSearchInput';
 import { mount } from 'enzyme';
-import { google } from '../SimpleMap/helpers/__mocks__/gmapFunctions';
+import { google } from 'components/SimpleMap/helpers/__mocks__/gmapFunctions';
 
 describe('MapSearchInput', () => {
   let mapSearchInputComponent;
@@ -13,7 +13,6 @@ describe('MapSearchInput', () => {
   describe('rendering', () => {
     test('renders as expected', () => {
       mapSearchInputComponent = mount(<MapSearchInput />);
-      expect(mapSearchInputComponent).toBeTruthy();
       expect(mapSearchInputComponent.length).toBe(1);
       // expect(mapSearchInputComponent).toMatchSnapshot();
     });

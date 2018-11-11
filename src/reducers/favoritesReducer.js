@@ -1,5 +1,5 @@
-import { ADD_FAVORITE, DELETE_FAVORITE, SET_RATING } from '../constants';
-import { getPhoto, fetchAllPhotos } from '../utils/functions';
+import { ADD_FAVORITE, DELETE_FAVORITE, SET_RATING } from 'constants/index';
+import { getPhoto, fetchAllPhotos } from 'utils/functions';
 
 const favoritesReducer = (state = [], action) => {
   let newState;

@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { func, number, object } from 'prop-types';
 import classNames from 'classnames';
-import * as actions from '../../actions';
+import * as actions from 'actions';
 import Lightbox from 'react-image-lightbox';
 import { Offline, Online } from 'react-detect-offline';
-
+import { getPhoto, cardinalize } from 'utils/functions';
+import { FavoritedItemContainer, FooterDiv } from './FavoritedItem.styles';
+import Stars from 'components/Stars/Stars';
+import { DEFAULT_TRANSITION_DURATION } from 'constants/index';
+import { favoritesTypes } from 'reducers/types/favorites.types';
 import {
   Button,
   Badge,
@@ -14,11 +18,6 @@ import {
   CardImgOverlay,
   CardText
 } from 'reactstrap';
-import { getPhoto, cardinalize } from '../../utils/functions';
-import { FavoritedItemContainer, FooterDiv } from './FavoritedItem.styles';
-import Stars from '../Stars/Stars';
-import { DEFAULT_TRANSITION_DURATION } from '../../constants';
-import { favoritesTypes } from '../../reducers/types/favorites.types';
 
 const FavoritedItem = ({
   favorite,

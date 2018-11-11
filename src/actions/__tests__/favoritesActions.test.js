@@ -1,6 +1,6 @@
 import { addFavorite, deleteFavorite } from '..';
-import { ADD_FAVORITE, DELETE_FAVORITE } from '../../constants';
-import { dummyFavorites } from '../../utils/dummyData';
+import { ADD_FAVORITE, DELETE_FAVORITE } from 'constants/index';
+import { dummyFavorites } from 'utils/dummyData';
 
 describe('favoritesActions', () => {
   describe('addFavorite', () => {

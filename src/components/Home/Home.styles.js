@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Container } from 'reactstrap';
-import { DEFAULT_TRANSITION_DURATION } from '../../constants';
+import { DEFAULT_TRANSITION_DURATION } from 'constants/index';
 
 export const HomeContainer = styled(Container)`
   padding-left: 0px !important;

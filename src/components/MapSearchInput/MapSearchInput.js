@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from 'react';
 import { array, func, object, shape } from 'prop-types';
-import { BERLIN } from '../../constants';
+import { BERLIN } from 'constants/index';
 import { SearchInput, StyledPopover } from './MapSearchInput.styles';
 import { PopoverBody } from 'reactstrap';
 import idx from 'idx';
@@ -71,7 +71,7 @@ const MapSearchInput = ({ currentMapInfo, handleMapInstance, places }) => {
       >
         <PopoverBody>
           {lastFavoritedItemExists
-            ? 'You have already favorited this restaurant!'
+            ? 'You have already selected this restaurant!'
             : 'Sorry this is not a restaurant. Please try your search again.'}
         </PopoverBody>
       </StyledPopover>

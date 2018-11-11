@@ -12,9 +12,6 @@ jest-test-results.json
 # production
 /build
 
-# env
-.env
-
 # vs code
 .vscode
 

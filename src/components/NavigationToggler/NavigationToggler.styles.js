@@ -3,8 +3,8 @@ import {
   DEFAULT_TRANSITION_DURATION,
   NAV_SHADOW,
   ACTIVE_NAV_SHADOW
-} from '../../constants';
-import { fixedTopButton } from '../../utils/styleVars';
+} from 'constants/index';
+import { fixedTopButton } from 'utils/styleVars';
 
 export const NavigationTogglerContainer = styled.button`
   ${fixedTopButton()};

@@ -1,5 +1,5 @@
 import React from 'react';
-import { setupReduxConnectedComponent } from '../../utils/testHelpers';
+import { setupReduxConnectedComponent } from 'utils/testHelpers';
 import NavigationToggler from './NavigationToggler';
 
 describe('NavigationToggler', () => {
@@ -12,7 +12,6 @@ describe('NavigationToggler', () => {
     );
 
     test('renders as expected', () => {
-      expect(navigationTogglerComponent).toBeTruthy();
       expect(navigationTogglerComponent.length).toBe(1);
       expect(navigationTogglerComponent).toMatchSnapshot();
     });

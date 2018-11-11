@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {
   NAVIGATION_HEIGHT,
   DEFAULT_TRANSITION_DURATION
-} from '../../constants';
+} from 'constants/index';
 
 export const MapContainer = styled.div`
   height: calc(100vh - ${NAVIGATION_HEIGHT}px);

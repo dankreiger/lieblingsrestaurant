@@ -1,6 +1,6 @@
-import navigationReducer from './../navigationReducer';
-import { TOGGLE_NAVIGATION, CLOSE_NAVIGATION } from './../../constants';
-import { dummyNavigation } from '../../utils/dummyData';
+import navigationReducer from 'reducers/navigationReducer';
+import { TOGGLE_NAVIGATION, CLOSE_NAVIGATION } from 'constants/index';
+import { dummyNavigation } from 'utils/dummyData';
 
 describe('navigationReducer', () => {
   describe('actions of type TOGGLE_NAVIGATION', () => {

@@ -2,14 +2,14 @@ import React from 'react';
 import { Offline, Online } from 'react-detect-offline';
 import { func } from 'prop-types';
 import { connect } from 'react-redux';
-import * as actions from './../../actions';
+import * as actions from 'actions';
 import { Row, Col } from 'reactstrap';
-import SimpleMap from '../SimpleMap/SimpleMap';
+import SimpleMap from 'components/SimpleMap/SimpleMap';
 import { HomeContainer } from './Home.styles';
 import classNames from 'classnames';
-import NavigationToggler from '../NavigationToggler/NavigationToggler';
-import { favoritesTypes } from '../../reducers/types/favorites.types';
-import { navigationTypes } from '../../reducers/types/navigation.types';
+import NavigationToggler from 'components/NavigationToggler/NavigationToggler';
+import { favoritesTypes } from 'reducers/types/favorites.types';
+import { navigationTypes } from 'reducers/types/navigation.types';
 
 const Home = ({ favorites, toggleNavigation, navigation }) => (
   <HomeContainer fluid className={classNames({ toggled: navigation.toggled })}>
