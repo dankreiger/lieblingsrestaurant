@@ -19,7 +19,7 @@ export const SearchInput = styled(Geosuggest)`
   .geosuggest__input {
     width: 100%;
     border: 2px solid
-      ${({ validSelection }) => (validSelection ? 'transparent' : DANGER_COLOR)};
+      ${({ errorExists }) => (errorExists ? DANGER_COLOR : 'transparent')};
     box-shadow: 0 0 1px #3d464d;
     padding: 0.5em 1em;
     transition: border 0.2s, box-shadow 0.2s;
@@ -27,6 +27,9 @@ export const SearchInput = styled(Geosuggest)`
       border-color: #267dc0;
       box-shadow: 0 0 0 transparent;
     }
+    /* &:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0px 1000px white inset;
+    } */
   }
   .geosuggest__suggests {
     position: absolute;

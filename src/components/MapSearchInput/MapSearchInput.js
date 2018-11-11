@@ -10,10 +10,14 @@ import idx from 'idx';
 const MapSearchInput = ({ currentMapInfo, handleMapInstance, places }) => {
   const [validSelection, setSelectionValidity] = useState(true);
   const [showSuggestions, setSuggestionsVisibility] = useState(false);
+  const [lastFavoritedItemExists, setExistenceOfLastFavoritedItem] = useState(
+    false
+  );
   const inputContainer = useRef(null);
 
   const handleFocus = () => {
     setSuggestionsVisibility(false);
+    setExistenceOfLastFavoritedItem(false);
     inputContainer.current.clear();
     if (!validSelection) {
       setSelectionValidity(true);
@@ -38,7 +42,10 @@ const MapSearchInput = ({ currentMapInfo, handleMapInstance, places }) => {
         return;
       } else {
         if (!places.some(place => place.placeId === newPlace.placeId)) {
+          setExistenceOfLastFavoritedItem(false);
           handleMapInstance(map, maps, [...places, newPlace]);
+        } else {
+          setExistenceOfLastFavoritedItem(true);
         }
       }
     }
@@ -53,7 +60,7 @@ const MapSearchInput = ({ currentMapInfo, handleMapInstance, places }) => {
         location={new google.maps.LatLng(BERLIN.lat, BERLIN.lng)}
         radius={2000}
         types={['establishment']}
-        validSelection={validSelection}
+        errorExists={!validSelection || lastFavoritedItemExists}
         showSuggestions={showSuggestions}
         id="invalidSelectionPopup"
       />
@@ -65,6 +72,13 @@ const MapSearchInput = ({ currentMapInfo, handleMapInstance, places }) => {
         <PopoverBody>
           Sorry this is not a restaurant. Please try your search again.
         </PopoverBody>
+      </StyledPopover>
+      <StyledPopover
+        placement="bottom"
+        isOpen={lastFavoritedItemExists}
+        target="invalidSelectionPopup"
+      >
+        <PopoverBody>You have already favorited this restaurant!</PopoverBody>
       </StyledPopover>
     </>
   );

@@ -18,7 +18,7 @@ const bindResizeListener = (map, maps, bounds) => {
 };
 
 // Fit map to its bounds after the api is loaded
-export const apiIsLoaded = (map, maps, places) => {
+export const positionGoogleMap = (map, maps, places) => {
   // Get bounds by our places
   if (places.length) {
     const bounds = getMapBounds(map, maps, places);
@@ -29,7 +29,7 @@ export const apiIsLoaded = (map, maps, places) => {
 
     // Don't zoom in too closely for 1 item
     if (places.length === 1) {
-      map.setZoom(Math.min(map.getZoom(), 12));
+      map.setZoom(Math.min(map.getZoom(), 18));
     }
   }
 };

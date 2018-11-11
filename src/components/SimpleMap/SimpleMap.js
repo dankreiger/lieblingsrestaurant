@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { array, object } from 'prop-types';
 import { connect } from 'react-redux';
 import GoogleMapReact from 'google-map-react';
-import { apiIsLoaded, appendGmapScript } from './helpers/gmapFunctions';
+import { positionGoogleMap, appendGmapScript } from './helpers/gmapFunctions';
 import MapMarker from '../MapMarker/MapMarker';
 import { MapContainer } from './SimpleMap.styles';
 import { BERLIN } from '../../constants';
@@ -30,17 +30,19 @@ class SimpleMap extends Component {
   }
 
   handleMapInstance = (map, maps, places) => {
-    apiIsLoaded(map, maps, places);
-    this.setState({ places });
-    this.setState({ currentMapInfo: { map, maps } });
+    positionGoogleMap(map, maps, places);
+    this.setState({ currentMapInfo: { map, maps }, places });
   };
 
   removePlace = placeToRemove => {
     const { places } = this.state;
+    const { map, maps } = this.state.currentMapInfo;
     const newPlaces = places.filter(
       place => place.placeId !== placeToRemove.placeId
     );
-    this.setState({ places: newPlaces });
+    this.setState({ places: newPlaces }, () => {
+      positionGoogleMap(map, maps, this.state.places);
+    });
   };
 
   render() {
