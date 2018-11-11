@@ -47,6 +47,9 @@ export const NavigationContainer = styled.div`
     margin: 0;
     padding: 0;
     list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     li {
       text-indent: 20px;
       line-height: 40px;

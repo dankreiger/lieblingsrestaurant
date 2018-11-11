@@ -22,6 +22,9 @@
     "extends": "react-app"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "1.2.8",
+    "@fortawesome/free-solid-svg-icons": "5.5.0",
+    "@fortawesome/react-fontawesome": "0.1.3",
     "bootstrap": "4.1.3",
     "classnames": "2.2.6",
     "google-map-react": "1.0.9",

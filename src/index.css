@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  font-family: 'Roboto', 'Lato', 'Open Sans', -apple-system, BlinkMacSystemFont,
+  font-family: 'Roboto', 'Lato', -apple-system, BlinkMacSystemFont,
     'Helvetica Neue', Verdana, Arial, Geneva, sans-serif;
   font-size: 1rem;
   line-height: 1.5;

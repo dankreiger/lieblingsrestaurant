@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+
 import {
   NavigationContainer,
   FavoritesLink,
@@ -22,7 +25,7 @@ const Navigation = ({ navigation, toggleNavigation }) => {
       <ul className="sidebar-nav">
         <li className="sidebar-brand">
           <HomeLink to="/" onClick={toggleNavigation}>
-            <i className="fas fa-home" />
+            <FontAwesomeIcon icon={faHome} />
           </HomeLink>
         </li>
         <li>

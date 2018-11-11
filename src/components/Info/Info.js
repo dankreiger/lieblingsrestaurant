@@ -1,4 +1,5 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import { array, arrayOf, boolean, number, shape, string } from 'prop-types';
 import { Col, Row } from 'reactstrap';
@@ -6,6 +7,7 @@ import { connect } from 'react-redux';
 import { FavoritesRow, InfoContainer, HomeButtonLink } from './Info.styles';
 import * as actions from '../../actions';
 import FavoritedItem from '../FavoritedItem/FavoritedItem';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 const Info = ({ favorites, history, toggleNavigation, navigationToggled }) => {
   const sortedFavorites = () => {
@@ -17,7 +19,7 @@ const Info = ({ favorites, history, toggleNavigation, navigationToggled }) => {
       <Row>
         <Col>
           <HomeButtonLink to="/" onClick={toggleNavigation}>
-            <i className="fas fa-home" />
+            <FontAwesomeIcon icon={faHome} />
           </HomeButtonLink>
         </Col>
       </Row>

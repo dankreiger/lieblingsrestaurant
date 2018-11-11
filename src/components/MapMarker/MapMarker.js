@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import { func, object } from 'prop-types';
 import { Button } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 
 import {
@@ -53,7 +55,7 @@ const MapMarker = ({
         })}
         onClick={() => removePlace(place)}
       >
-        <i className="fas fa-times" />
+        <FontAwesomeIcon icon={faTimes} />
       </CloseIcon>
       <MapMarkerContainer
         onClick={() => toggleToolTipVisibility(!toolTipVisible)}
@@ -75,9 +77,9 @@ const MapMarker = ({
             }
           >
             {currentFavoriteStatus ? (
-              <i className="fas fa-trash" />
+              <FontAwesomeIcon icon={faTrash} />
             ) : (
-              <i className="fas fa-plus" />
+              <FontAwesomeIcon icon={faPlus} />
             )}
           </Button>
         </MapMarkerToolTip>

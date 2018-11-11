@@ -12,6 +12,7 @@ export const CloseIcon = styled.div`
   font-size: 2em;
   cursor: pointer;
   width: 38px;
+  height: 38px;
   position: absolute;
   background: ${DANGER_COLOR};
   border-radius: 100%;
