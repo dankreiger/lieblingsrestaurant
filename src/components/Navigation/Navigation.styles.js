@@ -60,11 +60,13 @@ export const NavigationContainer = styled.div`
         display: block;
         text-decoration: none;
         color: #ffffff;
-        transition: opacity ${DEFAULT_TRANSITION_DURATION}ms;
+        transition: opacity ${DEFAULT_TRANSITION_DURATION}ms,
+          transform ${DEFAULT_TRANSITION_DURATION};
         opacity: 1;
         &:hover {
           text-decoration: none;
           opacity: 0.9;
+          transform: scale(1.02);
           /* background: rgba(255, 255, 255, 0.2); */
         }
         &:active,
