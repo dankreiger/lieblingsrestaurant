@@ -8,11 +8,11 @@ export const SearchInput = styled(Geosuggest)`
   &.geosuggest {
     font-size: 18px;
     font-size: 1rem;
-    text-align: left;
+    /* text-align: left; */
     margin: 0 auto;
     width: 100%;
-    left: 0;
-    position: absolute;
+    /* left: 0; */
+    /* position: absolute; */
   }
   .geosuggest__suggests-wrapper {
     display: ${({ showSuggestions }) => (showSuggestions ? 'block' : 'none')};

@@ -7,7 +7,12 @@ import { SearchInput, StyledPopover } from './MapSearchInput.styles';
 import { PopoverBody } from 'reactstrap';
 import idx from 'idx';
 
-const MapSearchInput = ({ currentMapInfo, handleMapInstance, places }) => {
+const MapSearchInput = ({
+  currentMapInfo,
+  handleMapInstance,
+  mapSearchFilterType,
+  places
+}) => {
   const [showSuggestions, setSuggestionsVisibility] = useState(false);
   const [isRestaurant, setIsRestaurantStatus] = useState(true);
   const [lastFavoritedItemExists, setExistenceOfLastFavoritedItem] = useState(
@@ -59,7 +64,7 @@ const MapSearchInput = ({ currentMapInfo, handleMapInstance, places }) => {
         onSuggestSelect={handleSuggestSelect}
         location={new google.maps.LatLng(BERLIN.lat, BERLIN.lng)}
         radius={2000}
-        types={['establishment']}
+        types={mapSearchFilterType}
         errorExists={!isRestaurant || lastFavoritedItemExists}
         showSuggestions={showSuggestions}
         id="invalidSelectionPopup"
@@ -85,7 +90,8 @@ MapSearchInput.propTypes = {
     map: object,
     maps: object
   }),
-  handleMapInstance: func
+  handleMapInstance: func,
+  mapSearchFilterType: array
 };
 
 export default MapSearchInput;
