@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import Geosuggest from 'react-geosuggest';
 import { Popover } from 'reactstrap';
-import { DANGER_COLOR } from '../../constants/colorsConstants';
+import { DANGER_COLOR } from '../../constants';
+import { ACTIVE_NAV_SHADOW, NAV_SHADOW } from '../../constants';
 
 export const SearchInput = styled(Geosuggest)`
   &.geosuggest {
@@ -20,12 +21,12 @@ export const SearchInput = styled(Geosuggest)`
     width: 100%;
     border: 2px solid
       ${({ errorExists }) => (errorExists ? DANGER_COLOR : 'transparent')};
-    box-shadow: 0 0 1px #3d464d;
+    box-shadow: ${NAV_SHADOW};
     padding: 0.5em 1em;
     transition: border 0.2s, box-shadow 0.2s;
     &:focus {
       border-color: #267dc0;
-      box-shadow: 0 0 0 transparent;
+      box-shadow: ${ACTIVE_NAV_SHADOW};
     }
     /* &:-webkit-autofill {
       -webkit-box-shadow: 0 0 0px 1000px white inset;

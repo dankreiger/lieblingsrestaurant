@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from 'react';
 import { array, func, object, shape } from 'prop-types';
-import { BERLIN } from '../../constants/';
+import { BERLIN } from '../../constants';
 import { SearchInput, StyledPopover } from './MapSearchInput.styles';
 import { PopoverBody } from 'reactstrap';
 import idx from 'idx';

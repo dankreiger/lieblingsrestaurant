@@ -1,10 +1,19 @@
 import styled from 'styled-components';
-import { DEFAULT_TRANSITION_DURATION } from '../../constants';
+import {
+  DEFAULT_TRANSITION_DURATION,
+  NAV_SHADOW,
+  ACTIVE_NAV_SHADOW
+} from '../../constants';
 import { fixedTopButton } from '../../utils/styleVars';
 
 export const NavigationTogglerContainer = styled.button`
   ${fixedTopButton()};
-
+  box-shadow: ${NAV_SHADOW};
+  transition: box-shadow 250ms;
+  border: none;
+  &:active {
+    box-shadow: ${ACTIVE_NAV_SHADOW};
+  }
   .fa-utensils {
     transition: transform ${DEFAULT_TRANSITION_DURATION}ms
       ${DEFAULT_TRANSITION_DURATION}ms;

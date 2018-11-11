@@ -7,6 +7,7 @@ import MapMarker from '../MapMarker/MapMarker';
 import { MapContainer } from './SimpleMap.styles';
 import { BERLIN } from '../../constants';
 import MapSearchInput from '../MapSearchInput/MapSearchInput';
+import { mapOptions } from './helpers/gmapOptions';
 
 // TODO: Improve this component!!!
 class SimpleMap extends Component {
@@ -47,6 +48,7 @@ class SimpleMap extends Component {
 
   render() {
     const { places, currentMapInfo, mapReady } = this.state;
+    const { navigation } = this.props;
     return (
       <>
         {currentMapInfo && (
@@ -57,13 +59,13 @@ class SimpleMap extends Component {
           />
         )}
 
-        <MapContainer {...this.props.navigation}>
+        <MapContainer {...navigation}>
           {mapReady && (
             <GoogleMapReact
               defaultCenter={{ lat: BERLIN.lat, lng: BERLIN.lng }}
               defaultZoom={12}
               yesIWantToUseGoogleMapApiInternals
-              options={{ disableDoubleClickZoom: true }}
+              options={mapOptions}
               onGoogleApiLoaded={({ map, maps }) =>
                 this.handleMapInstance(map, maps, places)
               }

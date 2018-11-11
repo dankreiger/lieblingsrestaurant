@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import {
   NAVIGATION_HEIGHT,
-  DEFAULT_TRANSITION_DURATION
+  DEFAULT_TRANSITION_DURATION,
+  NAV_SHADOW
 } from '../../constants';
 
 export const NavigationContainer = styled.div`
@@ -13,10 +14,24 @@ export const NavigationContainer = styled.div`
   height: 100%;
   margin-left: -250px;
   overflow-y: auto;
-  background: #000;
-  transition: all ${DEFAULT_TRANSITION_DURATION}ms ease;
+  background: #000000; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom,
+    #434343,
+    #000000
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #434343,
+    #000000
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  transition: width ${DEFAULT_TRANSITION_DURATION}ms ease,
+    box-shadow ${DEFAULT_TRANSITION_DURATION}ms ease
+      ${DEFAULT_TRANSITION_DURATION}ms;
   &.toggled {
     width: 250px;
+    box-shadow: ${NAV_SHADOW};
   }
 
   #page-content-wrapper {
@@ -27,7 +42,7 @@ export const NavigationContainer = styled.div`
 
   .sidebar-nav {
     position: absolute;
-    top: 0;
+    top: 20px;
     width: 250px;
     margin: 0;
     padding: 0;
@@ -38,11 +53,13 @@ export const NavigationContainer = styled.div`
       a {
         display: block;
         text-decoration: none;
-        color: #999999;
+        color: #ffffff;
+        transition: opacity ${DEFAULT_TRANSITION_DURATION}ms;
+        opacity: 1;
         &:hover {
           text-decoration: none;
-          color: #fff;
-          background: rgba(255, 255, 255, 0.2);
+          opacity: 0.9;
+          /* background: rgba(255, 255, 255, 0.2); */
         }
         &:active,
         &:focus {
@@ -55,9 +72,8 @@ export const NavigationContainer = styled.div`
       font-size: 18px;
       line-height: 60px;
       a {
-        color: #999999;
+        color: #fff;
         &:hover {
-          color: #fff;
           background: none;
         }
       }
@@ -84,6 +100,11 @@ export const FavoritesLink = styled(Link)`
 `;
 
 export const RemoveLink = styled(Link)`
-  color: #b00020 !important;
+  color: #ff4136 !important;
   margin-top: 70px;
+  opacity: 1;
+  transition: opacity ${DEFAULT_TRANSITION_DURATION};
+  &:hover {
+    opacity: 0.9;
+  }
 `;
