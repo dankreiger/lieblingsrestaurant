@@ -42,17 +42,20 @@ export const NavigationContainer = styled.div`
 
   .sidebar-nav {
     position: absolute;
-    top: 20px;
+    top: 0;
     width: 250px;
+    height: 100vh;
     margin: 0;
     padding: 0;
     list-style: none;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-around;
+    font-size: 2.5em;
+    padding-top: 75px;
+    padding-bottom: 75px;
     li {
-      text-indent: 20px;
-      line-height: 40px;
       a {
         display: block;
         text-decoration: none;
@@ -67,17 +70,6 @@ export const NavigationContainer = styled.div`
         &:active,
         &:focus {
           text-decoration: none;
-        }
-      }
-    }
-    > .sidebar-brand {
-      height: 65px;
-      font-size: 18px;
-      line-height: 60px;
-      a {
-        color: #fff;
-        &:hover {
-          background: none;
         }
       }
     }
@@ -104,7 +96,6 @@ export const FavoritesLink = styled(Link)`
 
 export const RemoveLink = styled(Link)`
   color: #ff4136 !important;
-  margin-top: 70px;
   opacity: 1;
   transition: opacity ${DEFAULT_TRANSITION_DURATION};
   &:hover {

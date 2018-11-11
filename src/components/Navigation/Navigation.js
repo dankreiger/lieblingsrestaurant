@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faLeaf, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 import {
   NavigationContainer,
@@ -23,19 +23,19 @@ const Navigation = ({ navigation, toggleNavigation }) => {
       className={classNames({ toggled: navigation && navigation.toggled })}
     >
       <ul className="sidebar-nav">
-        <li className="sidebar-brand">
+        <li>
+          <FavoritesLink to="/info" onClick={toggleNavigation}>
+            <FontAwesomeIcon icon={faLeaf} />
+          </FavoritesLink>
+        </li>
+        <li>
           <HomeLink to="/" onClick={toggleNavigation}>
             <FontAwesomeIcon icon={faHome} />
           </HomeLink>
         </li>
         <li>
-          <FavoritesLink to="/info" onClick={toggleNavigation}>
-            Favorites
-          </FavoritesLink>
-        </li>
-        <li>
           <RemoveLink to="#" onClick={event => resetApp(event)}>
-            Remove All Favorites
+            <FontAwesomeIcon icon={faTrash} />
           </RemoveLink>
         </li>
       </ul>
