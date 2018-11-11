@@ -8,8 +8,8 @@ import { PopoverBody } from 'reactstrap';
 import idx from 'idx';
 
 const MapSearchInput = ({ currentMapInfo, handleMapInstance, places }) => {
-  const [validSelection, setSelectionValidity] = useState(true);
   const [showSuggestions, setSuggestionsVisibility] = useState(false);
+  const [isRestaurant, setIsRestaurantStatus] = useState(true);
   const [lastFavoritedItemExists, setExistenceOfLastFavoritedItem] = useState(
     false
   );
@@ -19,8 +19,8 @@ const MapSearchInput = ({ currentMapInfo, handleMapInstance, places }) => {
     setSuggestionsVisibility(false);
     setExistenceOfLastFavoritedItem(false);
     inputContainer.current.clear();
-    if (!validSelection) {
-      setSelectionValidity(true);
+    if (!isRestaurant) {
+      setIsRestaurantStatus(true);
     }
     // prevent suggestions dropdown from opening abruptly and unnecessarily
     // send a PR to Geosuggest
@@ -36,9 +36,9 @@ const MapSearchInput = ({ currentMapInfo, handleMapInstance, places }) => {
     const { map, maps } = currentMapInfo;
 
     if (idx(newPlace, _ => _.gmaps.types.length)) {
-      const isRestaurant = newPlace.gmaps.types.includes('restaurant');
-      setSelectionValidity(isRestaurant);
-      if (!isRestaurant) {
+      const newPlaceIsRestaurant = newPlace.gmaps.types.includes('restaurant');
+      setIsRestaurantStatus(newPlaceIsRestaurant);
+      if (!newPlaceIsRestaurant) {
         return;
       } else {
         if (!places.some(place => place.placeId === newPlace.placeId)) {
@@ -60,25 +60,20 @@ const MapSearchInput = ({ currentMapInfo, handleMapInstance, places }) => {
         location={new google.maps.LatLng(BERLIN.lat, BERLIN.lng)}
         radius={2000}
         types={['establishment']}
-        errorExists={!validSelection || lastFavoritedItemExists}
+        errorExists={!isRestaurant || lastFavoritedItemExists}
         showSuggestions={showSuggestions}
         id="invalidSelectionPopup"
       />
       <StyledPopover
         placement="bottom"
-        isOpen={!validSelection}
+        isOpen={!isRestaurant || lastFavoritedItemExists}
         target="invalidSelectionPopup"
       >
         <PopoverBody>
-          Sorry this is not a restaurant. Please try your search again.
+          {lastFavoritedItemExists
+            ? 'You have already favorited this restaurant!'
+            : 'Sorry this is not a restaurant. Please try your search again.'}
         </PopoverBody>
-      </StyledPopover>
-      <StyledPopover
-        placement="bottom"
-        isOpen={lastFavoritedItemExists}
-        target="invalidSelectionPopup"
-      >
-        <PopoverBody>You have already favorited this restaurant!</PopoverBody>
       </StyledPopover>
     </>
   );
