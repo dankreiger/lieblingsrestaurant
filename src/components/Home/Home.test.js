@@ -1,11 +1,11 @@
 import React from 'react';
 
 import Home from './Home';
-import SimpleMap from '../SimpleMap/SimpleMap';
-import { dummyNavigation, dummyFavorites } from '../../utils/dummyData';
-import { setupReduxConnectedComponent } from '../../utils/testHelpers';
+import SimpleMap from 'components/SimpleMap/SimpleMap';
+import { dummyNavigation, dummyFavorites } from 'utils/dummyData';
+import { setupReduxConnectedComponent } from 'utils/testHelpers';
 
-jest.mock('../SimpleMap/helpers/gmapFunctions.js');
+jest.mock('components/SimpleMap/helpers/gmapFunctions.js');
 
 describe('Home', () => {
   let homeComponent;
@@ -14,7 +14,6 @@ describe('Home', () => {
     homeComponent = setupReduxConnectedComponent(<Home />, 'shallow');
 
     test('renders as expected', () => {
-      expect(homeComponent).toBeTruthy();
       expect(homeComponent.length).toBe(1);
       expect(homeComponent).toMatchSnapshot();
     });
@@ -32,7 +31,6 @@ describe('Home', () => {
       homeComponent.unmount();
     });
     test('renders 1 map component', () => {
-      expect(homeComponent.find(SimpleMap)).toBeTruthy();
       expect(homeComponent.find(SimpleMap).length).toBe(1);
     });
   });

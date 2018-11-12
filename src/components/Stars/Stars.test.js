@@ -1,5 +1,5 @@
 import React from 'react';
-import { setupReduxConnectedComponent } from '../../utils/testHelpers';
+import { setupReduxConnectedComponent } from 'utils/testHelpers';
 import Stars from './Stars';
 
 describe('Stars', () => {
@@ -9,7 +9,6 @@ describe('Stars', () => {
     starsComponent = setupReduxConnectedComponent(<Stars />, 'shallow');
 
     test('renders as expected', () => {
-      expect(starsComponent).toBeTruthy();
       expect(starsComponent.length).toBe(1);
       expect(starsComponent).toMatchSnapshot();
     });

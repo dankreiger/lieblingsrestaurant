@@ -1,4 +1,4 @@
-import { TOGGLE_NAVIGATION, CLOSE_NAVIGATION } from '../constants';
+import { TOGGLE_NAVIGATION, CLOSE_NAVIGATION } from 'constants/index';
 
 const initialState = {
   toggled: false

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Card } from 'reactstrap';
-import { DEFAULT_TRANSITION_DURATION, OVERLAY_BG_COLOR } from '../../constants';
+import { DEFAULT_TRANSITION_DURATION, OVERLAY_BG_COLOR } from 'constants/index';
 
 export const FavoritedItemContainer = styled(Card)`
   cursor: pointer;
@@ -23,7 +23,8 @@ export const FavoritedItemContainer = styled(Card)`
       transform: scale(1.02);
     }
   }
-  img {
+  img,
+  .tempblackbg {
     transition: transform ${DEFAULT_TRANSITION_DURATION}ms;
     position: absolute;
     top: 0;
@@ -32,6 +33,9 @@ export const FavoritedItemContainer = styled(Card)`
     right: 0;
     object-fit: cover;
     height: 100%;
+  }
+  .tempblackbg {
+    background: #000;
   }
   .card-img-overlay {
     background: ${OVERLAY_BG_COLOR};
@@ -52,5 +56,6 @@ export const FooterDiv = styled.div`
   transform: translateX(-50%);
   button {
     border-radius: 0 !important;
+    padding: 10px 20px;
   }
 `;

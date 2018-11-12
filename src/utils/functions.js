@@ -14,7 +14,9 @@ export const getPhoto = item => {
   if (item.photo) {
     return item.photo;
   } else if (item.gmaps) {
-    return idx(item, _ => _.gmaps.photos[0].getUrl()) || item.gmaps.icon;
+    return !item.customFavorite
+      ? idx(item, _ => _.gmaps.photos[0].getUrl()) || item.gmaps.icon
+      : '';
   } else {
     return null;
   }

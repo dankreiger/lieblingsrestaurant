@@ -1,5 +1,10 @@
-import { ADD_FAVORITE, DELETE_FAVORITE, SET_RATING } from '../constants';
-import { getPhoto, fetchAllPhotos } from '../utils/functions';
+import {
+  ADD_CUSTOM_FAVORITE,
+  ADD_FAVORITE,
+  DELETE_FAVORITE,
+  SET_RATING
+} from 'constants/index';
+import { getPhoto, fetchAllPhotos } from 'utils/functions';
 
 const favoritesReducer = (state = [], action) => {
   let newState;
@@ -21,6 +26,15 @@ const favoritesReducer = (state = [], action) => {
         return [...state, ...newState];
       }
 
+    case ADD_CUSTOM_FAVORITE:
+      newState = [
+        {
+          ...payload,
+          customFavorite: true,
+          favorited: true
+        }
+      ];
+      return [...state, ...newState];
     case DELETE_FAVORITE:
       return state.filter(favorite => favorite.placeId !== payload.placeId);
     case SET_RATING:

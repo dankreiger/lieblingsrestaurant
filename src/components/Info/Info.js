@@ -5,9 +5,9 @@ import { array, arrayOf, boolean, number, shape, string } from 'prop-types';
 import { Col, Row } from 'reactstrap';
 import { connect } from 'react-redux';
 import { FavoritesRow, InfoContainer, HomeButtonLink } from './Info.styles';
-import * as actions from '../../actions';
-import FavoritedItem from '../FavoritedItem/FavoritedItem';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
+import * as actions from 'actions';
+import FavoritedItem from 'components/FavoritedItem/FavoritedItem';
+import { faUtensils } from '@fortawesome/free-solid-svg-icons';
 
 const Info = ({ favorites, history, toggleNavigation, navigationToggled }) => {
   const sortedFavorites = () => {
@@ -18,8 +18,8 @@ const Info = ({ favorites, history, toggleNavigation, navigationToggled }) => {
     <InfoContainer fluid className={classNames({ toggled: navigationToggled })}>
       <Row>
         <Col>
-          <HomeButtonLink to="/" onClick={toggleNavigation}>
-            <FontAwesomeIcon icon={faHome} />
+          <HomeButtonLink to="#" onClick={toggleNavigation}>
+            <FontAwesomeIcon icon={faUtensils} />
           </HomeButtonLink>
         </Col>
       </Row>

@@ -504,3 +504,11 @@ export const dummyFavorites = [
     rating: 1
   }
 ];
+
+export const dummyCustomFavorite = {
+  restaurantName: 'some name',
+  restaurantStreetAddress: '111 Unter den Linden',
+  city: 'Berlin',
+  region: 'Berlin',
+  plz: '10178'
+};

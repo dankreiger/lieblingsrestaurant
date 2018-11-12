@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { DEFAULT_TRANSITION_DURATION } from '../../constants';
+import { DEFAULT_TRANSITION_DURATION } from 'constants/index';
 
 export const StarContainer = styled.div`
   &.stars {

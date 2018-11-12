@@ -1,6 +1,5 @@
-import { toggleNavigation } from '..';
-import { TOGGLE_NAVIGATION, CLOSE_NAVIGATION } from '../../constants';
-import { closeNavigation } from '../navigationActions';
+import { TOGGLE_NAVIGATION, CLOSE_NAVIGATION } from 'constants/index';
+import { toggleNavigation, closeNavigation } from 'actions';
 
 describe('navigationActions', () => {
   describe('toggleNavigation', () => {

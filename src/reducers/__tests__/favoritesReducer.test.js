@@ -1,6 +1,8 @@
-import favoritesReducer from './../favoritesReducer';
-import { ADD_FAVORITE, DELETE_FAVORITE, SET_RATING } from './../../constants';
-import { dummyFavorites } from '../../utils/dummyData';
+import favoritesReducer from 'reducers/favoritesReducer';
+import { ADD_FAVORITE, DELETE_FAVORITE, SET_RATING } from 'constants/index';
+import { dummyFavorites } from 'utils/dummyData';
+import { ADD_CUSTOM_FAVORITE } from '../../constants/actionsConstants';
+import { dummyCustomFavorite } from '../../utils/dummyData';
 
 describe('favoritesReducer', () => {
   describe('actions of type ADD_FAVORITE', () => {
@@ -40,6 +42,41 @@ describe('favoritesReducer', () => {
       expect(newState[1].gmaps).toEqual(dummyFavorites[1].gmaps);
       expect(newState[1].gmaps).toEqual(dummyFavorites[1].gmaps);
       expect(newState[1].placeId).toEqual(dummyFavorites[1].placeId);
+    });
+  });
+
+  /* new feature needs more testing */
+  /* add id to prevent duplicates */
+  describe('actions of type ADD_CUSTOM_FAVORITE', () => {
+    let initialState = [];
+    let newState;
+    let action;
+
+    action = {
+      type: ADD_CUSTOM_FAVORITE,
+      payload: { ...dummyCustomFavorite, ...dummyFavorites[0] }
+    };
+
+    it('adds a favorite to the state without mutating the state', () => {
+      expect(initialState.length).toEqual(0);
+      newState = favoritesReducer(initialState, action);
+
+      expect(initialState.length).toEqual(0);
+      expect(newState.length).toEqual(1);
+
+      expect(newState[0].restaurantName).toEqual(
+        dummyCustomFavorite.restaurantName
+      );
+      expect(newState[0].restaurantStreetAddress).toEqual(
+        dummyCustomFavorite.restaurantStreetAddress
+      );
+      expect(newState[0].plz).toEqual(dummyCustomFavorite.plz);
+      expect(newState[0].city).toEqual(dummyCustomFavorite.city);
+      expect(newState[0].region).toEqual(dummyCustomFavorite.region);
+      expect(newState[0].description).toEqual(dummyFavorites[0].description);
+      expect(newState[0].label).toEqual(dummyFavorites[0].label);
+      expect(newState[0].gmaps).toEqual(dummyFavorites[0].gmaps);
+      expect(newState[0].placeId).toEqual(dummyFavorites[0].placeId);
     });
   });
 

@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
-import { array, object } from 'prop-types';
+import { func } from 'prop-types';
 import { connect } from 'react-redux';
 import GoogleMapReact from 'google-map-react';
 import { positionGoogleMap, appendGmapScript } from './helpers/gmapFunctions';
-import MapMarker from '../MapMarker/MapMarker';
+import MapMarker from 'components/MapMarker/MapMarker';
 import { MapContainer } from './SimpleMap.styles';
-import { BERLIN } from '../../constants';
-import MapSearchInput from '../MapSearchInput/MapSearchInput';
+import { BERLIN } from 'constants/index';
 import { mapOptions } from './helpers/gmapOptions';
+import MapMenu from 'components/MapMenu/MapMenu';
+import * as actions from 'actions';
+import { favoritesTypes } from 'reducers/types/favorites.types';
+import { navigationTypes } from 'reducers/types/navigation.types';
 
 // TODO: Improve this component!!!
 class SimpleMap extends Component {
@@ -19,9 +22,7 @@ class SimpleMap extends Component {
 
   componentDidMount() {
     if (!window.google) {
-      let s = appendGmapScript();
-
-      s.addEventListener('load', () => {
+      appendGmapScript().addEventListener('load', () => {
         this.setState({ mapReady: true });
       });
     } else {
@@ -48,17 +49,18 @@ class SimpleMap extends Component {
 
   render() {
     const { places, currentMapInfo, mapReady } = this.state;
-    const { navigation } = this.props;
+    const { favorites, toggleNavigation, navigation } = this.props;
     return (
       <>
         {currentMapInfo && (
-          <MapSearchInput
+          <MapMenu
+            currentMapInfo={currentMapInfo}
             handleMapInstance={this.handleMapInstance}
             places={this.state.places}
-            currentMapInfo={currentMapInfo}
+            favorites={favorites}
+            toggleNavigation={toggleNavigation}
           />
         )}
-
         <MapContainer {...navigation}>
           {mapReady && (
             <GoogleMapReact
@@ -93,11 +95,12 @@ const mapStateToProps = ({ favorites, navigation }) => ({
 });
 
 SimpleMap.propTypes = {
-  favorites: array,
-  navigation: object
+  ...favoritesTypes,
+  ...navigationTypes,
+  toggleNavigation: func
 };
 
 export default connect(
   mapStateToProps,
-  null
+  actions
 )(SimpleMap);

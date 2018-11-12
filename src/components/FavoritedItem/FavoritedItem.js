@@ -2,9 +2,16 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { func, number, object } from 'prop-types';
 import classNames from 'classnames';
-import * as actions from '../../actions';
+import * as actions from 'actions';
 import Lightbox from 'react-image-lightbox';
 import { Offline, Online } from 'react-detect-offline';
+import { getPhoto, cardinalize } from 'utils/functions';
+import { FavoritedItemContainer, FooterDiv } from './FavoritedItem.styles';
+import Stars from 'components/Stars/Stars';
+import { DEFAULT_TRANSITION_DURATION } from 'constants/index';
+import { favoritesTypes } from 'reducers/types/favorites.types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 import {
   Button,
@@ -14,11 +21,8 @@ import {
   CardImgOverlay,
   CardText
 } from 'reactstrap';
-import { getPhoto, cardinalize } from '../../utils/functions';
-import { FavoritedItemContainer, FooterDiv } from './FavoritedItem.styles';
-import Stars from '../Stars/Stars';
-import { DEFAULT_TRANSITION_DURATION } from '../../constants';
-import { favoritesTypes } from '../../reducers/types/favorites.types';
+import FavoriteBadge from 'components/FavoriteBadge/FavoriteBadge';
+// import FavoritedItemNotes from '../FavoritedItemNotes/FavoritedItemNotes';
 
 const FavoritedItem = ({
   favorite,
@@ -30,6 +34,7 @@ const FavoritedItem = ({
   const [itemIsUnmounting, setItemIsUnmounting] = useState(false);
   const [lightboxIsOpen, showLightbox] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
+  // const [notesVisible, setNotesVisibility] = useState(false);
   const photos = favorite.photos;
 
   const handleDeleteFavorite = (e, favorite) => {
@@ -42,6 +47,13 @@ const FavoritedItem = ({
       }, DEFAULT_TRANSITION_DURATION);
     }
   };
+
+  // const toggleNotes = e => {
+  //   e.stopPropagation();
+  //   setNotesVisibility(!notesVisible);
+  // }
+
+  // REFACTOR CUSTOM FAVORITE LOGIC
   return (
     <>
       <FavoritedItemContainer
@@ -49,10 +61,28 @@ const FavoritedItem = ({
         className={classNames('favoritedItemContainer', { itemIsUnmounting })}
         onClick={() => showLightbox(true)}
       >
-        <CardImg width="100%" src={getPhoto(favorite)} alt="Card image cap" />
+        {!favorite.customFavorite ? (
+          <CardImg width="100%" src={getPhoto(favorite)} alt="Card image cap" />
+        ) : (
+          <div className="tempblackbg" />
+        )}
         <CardImgOverlay>
-          <CardTitle>My {cardinalize(itemIndex + 1)} Favorite</CardTitle>
-          <CardText>{favorite.description}</CardText>
+          <FavoriteBadge favoriteRanking={cardinalize(itemIndex + 1)} />
+          <CardTitle>
+            {favorite.customFavorite
+              ? favorite.restaurantName
+              : favorite.gmaps.name || favorite.description}
+          </CardTitle>
+          <CardText>
+            {favorite.customFavorite
+              ? favorite.restaurantStreetAddress
+              : favorite.gmaps.formatted_address}
+          </CardText>
+          {favorite.customFavorite && (
+            <CardText>
+              {favorite.plz} {favorite.city} {favorite.region}
+            </CardText>
+          )}
           <CardText>
             <Badge
               pill
@@ -73,11 +103,20 @@ const FavoritedItem = ({
               color="danger"
               onClick={e => handleDeleteFavorite(e, favorite)}
             >
-              Remove
+              <FontAwesomeIcon icon={faTrash} />
             </Button>
+            {/* <Button
+              color="danger"
+              onClick={toggleNotes}
+            >
+              {notesVisible ? 'Hide Notes' : 'Show Notes'}
+            </Button>             */}
           </FooterDiv>
         </CardImgOverlay>
       </FavoritedItemContainer>
+      {/* {notesVisible && (
+        <FavoritedItemNotes/>
+      )} */}
       {lightboxIsOpen && (
         <>
           <Online>

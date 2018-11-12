@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 import Geosuggest from 'react-geosuggest';
 import { Popover } from 'reactstrap';
-import { DANGER_COLOR } from '../../constants';
-import { ACTIVE_NAV_SHADOW, NAV_SHADOW } from '../../constants';
+import { DANGER_COLOR } from 'constants/index';
+import { ACTIVE_NAV_SHADOW, NAV_SHADOW } from 'constants/index';
 
 export const SearchInput = styled(Geosuggest)`
   &.geosuggest {
     font-size: 18px;
     font-size: 1rem;
-    text-align: left;
+    /* text-align: left; */
     margin: 0 auto;
-    width: 100vw;
-    left: 0;
-    position: absolute;
+    width: 100%;
+    /* left: 0; */
+    /* position: absolute; */
   }
   .geosuggest__suggests-wrapper {
     display: ${({ showSuggestions }) => (showSuggestions ? 'block' : 'none')};

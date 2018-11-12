@@ -1,11 +1,8 @@
 import React from 'react';
 import Info from './Info';
-import { dummyFavorites, dummyNavigation } from '../../utils/dummyData';
-import FavoritedItem from '../FavoritedItem/FavoritedItem';
-import {
-  setupReduxConnectedComponent,
-  setupReduxConnectedComponentWithRouter
-} from '../../utils/testHelpers';
+import { dummyFavorites, dummyNavigation } from 'utils/dummyData';
+import FavoritedItem from 'components/FavoritedItem/FavoritedItem';
+import { setupReduxConnectedComponentWithRouter } from 'utils/testHelpers';
 
 describe('Info', () => {
   let infoComponent;
@@ -18,7 +15,6 @@ describe('Info', () => {
       );
     });
     test('renders as expected', () => {
-      expect(infoComponent).toBeTruthy();
       expect(infoComponent.length).toBe(1);
       expect(infoComponent).toMatchSnapshot();
     });

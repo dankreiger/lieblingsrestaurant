@@ -4,15 +4,19 @@ import { Link } from 'react-router-dom';
 import {
   NAVIGATION_HEIGHT,
   DEFAULT_TRANSITION_DURATION
-} from '../../constants';
-import { fixedTopButton } from '../../utils/styleVars';
+} from 'constants/index';
+import { fixedTopButton } from 'utils/styleFunctions';
 
 export const InfoContainer = styled(Container)`
   transition: padding ${DEFAULT_TRANSITION_DURATION}ms;
+  .fa-utensils {
+    transition: transform ${DEFAULT_TRANSITION_DURATION}ms
+      ${DEFAULT_TRANSITION_DURATION}ms;
+  }
   &.toggled {
     padding-left: 250px !important;
     .fa-utensils {
-      transform: rotate(180deg);
+      transform: rotate(90deg);
     }
   }
 `;

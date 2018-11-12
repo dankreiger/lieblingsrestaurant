@@ -4,6 +4,7 @@ import * as valuesConstants from './valuesConstants';
 
 export const {
   ADD_FAVORITE,
+  ADD_CUSTOM_FAVORITE,
   SET_RATING,
   DELETE_FAVORITE,
   TOGGLE_NAVIGATION,

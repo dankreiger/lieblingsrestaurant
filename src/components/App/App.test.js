@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import App from './App';
-import Navigation from '../Navigation/Navigation';
+import Navigation from 'components/Navigation/Navigation';
 import { Route } from 'react-router-dom';
 
 describe('App', () => {
@@ -13,7 +13,6 @@ describe('App', () => {
 
   describe('rendering', () => {
     test('renders as expected', () => {
-      expect(appComponent).toBeTruthy();
       expect(appComponent.length).toBe(1);
       expect(appComponent).toMatchSnapshot();
     });
@@ -21,12 +20,10 @@ describe('App', () => {
 
   describe('structure', () => {
     test('renders 1 <Navigation> component', () => {
-      expect(appComponent.find(Navigation)).toBeTruthy();
       expect(appComponent.find(Navigation).length).toBe(1);
       expect(appComponent.find(Route).length).toBe(2);
     });
     test('renders 2 routes', () => {
-      expect(appComponent.find(Navigation)).toBeTruthy();
       expect(appComponent.find(Route).length).toBe(2);
     });
   });

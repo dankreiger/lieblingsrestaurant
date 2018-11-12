@@ -43,7 +43,7 @@
 
    _Note: First time usage_
 
-   Make start script executable:
+   Make start script executable (script will create a private `.env.local` file containing your API key):
 
    ```sh
    $ chmod +x scripts/*.sh
@@ -72,6 +72,7 @@
 
 - [ ] Finish component unit/intergration tests
 - [ ] Add styleguide
+- [ ] Clean up the new address modal code - needs a lot of work and needs to be internationalized
 - [x] Static type all the components (propTypes)
 - [x] Make selecting / favoriting more user friendly bzw. allow user to unselect items that aren't favorited
 - [x] Filter search to restaurants only

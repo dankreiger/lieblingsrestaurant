@@ -6,7 +6,7 @@ import {
   OVERLAY_BG_COLOR,
   ACTIVE_MARKER_SHADOW,
   MARKER_SHADOW
-} from '../../constants';
+} from 'constants/index';
 
 export const CloseIcon = styled.div`
   font-size: 2em;

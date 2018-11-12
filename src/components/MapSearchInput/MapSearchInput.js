@@ -1,18 +1,27 @@
 /*global google */
 
 import React, { useRef, useState } from 'react';
-import { array, func, object, shape } from 'prop-types';
-import { BERLIN } from '../../constants';
+import { array, func, object, oneOfType, shape, string } from 'prop-types';
+import { BERLIN } from 'constants/index';
 import { SearchInput, StyledPopover } from './MapSearchInput.styles';
 import { PopoverBody } from 'reactstrap';
 import idx from 'idx';
+import NewAddressModal from '../NewAddressModal/NewAddressModal';
 
-const MapSearchInput = ({ currentMapInfo, handleMapInstance, places }) => {
+const MapSearchInput = ({
+  currentMapInfo,
+  handleMapInstance,
+  mapSearchFilterType,
+  places
+}) => {
   const [showSuggestions, setSuggestionsVisibility] = useState(false);
   const [isRestaurant, setIsRestaurantStatus] = useState(true);
   const [lastFavoritedItemExists, setExistenceOfLastFavoritedItem] = useState(
     false
   );
+  const [modalVisible, setModalVisbility] = useState(false);
+  const [modalStepIndex, setModalStepIndex] = useState(0);
+  const [customPlace, setCustomPlace] = useState(null);
   const inputContainer = useRef(null);
 
   const handleFocus = () => {
@@ -29,6 +38,14 @@ const MapSearchInput = ({ currentMapInfo, handleMapInstance, places }) => {
     }, 1000);
   };
 
+  const closeModal = () => {
+    setModalVisbility(false);
+  };
+
+  const goToNextModalStep = () => {
+    setModalStepIndex(modalStepIndex + 1);
+  };
+
   const handleSuggestSelect = newPlace => {
     if (!newPlace) {
       return;
@@ -37,16 +54,17 @@ const MapSearchInput = ({ currentMapInfo, handleMapInstance, places }) => {
 
     if (idx(newPlace, _ => _.gmaps.types.length)) {
       const newPlaceIsRestaurant = newPlace.gmaps.types.includes('restaurant');
-      setIsRestaurantStatus(newPlaceIsRestaurant);
-      if (!newPlaceIsRestaurant) {
-        return;
+
+      if (places.some(place => place.placeId === newPlace.placeId)) {
+        setExistenceOfLastFavoritedItem(true);
+      } else if (!newPlaceIsRestaurant) {
+        setExistenceOfLastFavoritedItem(false);
+        setModalVisbility(true);
+        setCustomPlace(newPlace);
       } else {
-        if (!places.some(place => place.placeId === newPlace.placeId)) {
-          setExistenceOfLastFavoritedItem(false);
-          handleMapInstance(map, maps, [...places, newPlace]);
-        } else {
-          setExistenceOfLastFavoritedItem(true);
-        }
+        setIsRestaurantStatus(newPlaceIsRestaurant);
+        setExistenceOfLastFavoritedItem(false);
+        handleMapInstance(map, maps, [...places, newPlace]);
       }
     }
   };
@@ -55,11 +73,15 @@ const MapSearchInput = ({ currentMapInfo, handleMapInstance, places }) => {
       <SearchInput
         ref={inputContainer}
         onFocus={handleFocus}
-        placeholder="Search for a restaurant..."
+        placeholder={
+          mapSearchFilterType.length
+            ? 'Search for a restaurant...'
+            : 'Search for an address...'
+        }
         onSuggestSelect={handleSuggestSelect}
         location={new google.maps.LatLng(BERLIN.lat, BERLIN.lng)}
         radius={2000}
-        types={['establishment']}
+        types={mapSearchFilterType}
         errorExists={!isRestaurant || lastFavoritedItemExists}
         showSuggestions={showSuggestions}
         id="invalidSelectionPopup"
@@ -71,10 +93,21 @@ const MapSearchInput = ({ currentMapInfo, handleMapInstance, places }) => {
       >
         <PopoverBody>
           {lastFavoritedItemExists
-            ? 'You have already favorited this restaurant!'
+            ? 'You have already selected this restaurant!'
             : 'Sorry this is not a restaurant. Please try your search again.'}
         </PopoverBody>
       </StyledPopover>
+      {modalVisible && (
+        <NewAddressModal
+          customPlace={customPlace}
+          handleMapInstance={handleMapInstance}
+          currentMapInfo={currentMapInfo}
+          modalStepIndex={modalStepIndex}
+          goToNextModalStep={goToNextModalStep}
+          places={places}
+          closeModal={closeModal}
+        />
+      )}
     </>
   );
 };
@@ -85,7 +118,8 @@ MapSearchInput.propTypes = {
     map: object,
     maps: object
   }),
-  handleMapInstance: func
+  handleMapInstance: func,
+  mapSearchFilterType: oneOfType([array, string])
 };
 
 export default MapSearchInput;
