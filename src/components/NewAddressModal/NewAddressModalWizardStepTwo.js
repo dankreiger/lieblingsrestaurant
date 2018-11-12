@@ -69,7 +69,8 @@ class NewAddressModalWizardStepTwo extends Component {
     if (this.formIsValid()) {
       const newPlace = {
         ...this.state,
-        ...customPlace
+        ...customPlace,
+        customFavorite: true
       };
       addCustomFavorite(newPlace);
       handleMapInstance(map, maps, [...places, newPlace]);

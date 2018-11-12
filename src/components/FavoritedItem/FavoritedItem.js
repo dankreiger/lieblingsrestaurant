@@ -48,6 +48,14 @@ const FavoritedItem = ({
     }
   };
 
+  const handleItemClick = () => {
+    if (!favorite.customFavorite) {
+      showLightbox(true);
+    } else {
+      alert('sorry this is not available for custom addresses');
+    }
+  };
+
   // const toggleNotes = e => {
   //   e.stopPropagation();
   //   setNotesVisibility(!notesVisible);
@@ -59,7 +67,7 @@ const FavoritedItem = ({
       <FavoritedItemContainer
         inverse
         className={classNames('favoritedItemContainer', { itemIsUnmounting })}
-        onClick={() => showLightbox(true)}
+        onClick={handleItemClick}
       >
         {!favorite.customFavorite ? (
           <CardImg width="100%" src={getPhoto(favorite)} alt="Card image cap" />

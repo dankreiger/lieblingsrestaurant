@@ -28,9 +28,11 @@ const MapMarker = ({
   removePlace
 }) => {
   const [currentFavoriteStatus, setCurrentFavoriteStatus] = useState(
-    place.favorited
+    place.customFavorite || place.favorited
   );
-  const [toolTipVisible, toggleToolTipVisibility] = useState(false);
+  const [toolTipVisible, toggleToolTipVisibility] = useState(
+    place.customFavorite || false
+  );
 
   const handleAddFavorite = e => {
     e.stopPropagation();
