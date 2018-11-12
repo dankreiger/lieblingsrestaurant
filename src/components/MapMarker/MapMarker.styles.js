@@ -102,6 +102,9 @@ export const MapMarkerToolTip = styled.div`
     top: calc(50% - 24px);
     transform: translateY(calc(-50% + 24px));
     opacity: 1;
+    display: flex;
+    justify-content: center;
+    width: 100%;
     transition: opacity ${DEFAULT_TRANSITION_DURATION}ms;
   }
   img {

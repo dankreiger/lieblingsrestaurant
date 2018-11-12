@@ -68,7 +68,9 @@ const MapMarker = ({
           })}
         >
           <img src={getPhoto(place)} alt="tool tip img" />
-          <div className="text-label">{place.label}</div>
+          <div className="text-label">
+            {place.restaurantName || place.label}
+          </div>
           <Button
             className={classNames({
               unfavorited: !currentFavoriteStatus,
