@@ -4,7 +4,7 @@ import {
   NAV_SHADOW,
   ACTIVE_NAV_SHADOW
 } from 'constants/index';
-import { fixedTopButton } from 'utils/styleVars';
+import { fixedTopButton } from 'utils/styleFunctions';
 
 export const NavigationTogglerContainer = styled.button`
   ${fixedTopButton()};

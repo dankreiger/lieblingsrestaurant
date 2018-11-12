@@ -1,11 +1,12 @@
 /*global google */
 
 import React, { useRef, useState } from 'react';
-import { array, func, object, shape } from 'prop-types';
+import { array, func, object, oneOfType, shape, string } from 'prop-types';
 import { BERLIN } from 'constants/index';
 import { SearchInput, StyledPopover } from './MapSearchInput.styles';
 import { PopoverBody } from 'reactstrap';
 import idx from 'idx';
+import NewAddressModal from '../NewAddressModal/NewAddressModal';
 
 const MapSearchInput = ({
   currentMapInfo,
@@ -18,6 +19,9 @@ const MapSearchInput = ({
   const [lastFavoritedItemExists, setExistenceOfLastFavoritedItem] = useState(
     false
   );
+  const [modalVisible, setModalVisbility] = useState(false);
+  const [modalStepIndex, setModalStepIndex] = useState(0);
+  const [customPlace, setCustomPlace] = useState(null);
   const inputContainer = useRef(null);
 
   const handleFocus = () => {
@@ -34,6 +38,14 @@ const MapSearchInput = ({
     }, 1000);
   };
 
+  const closeModal = () => {
+    setModalVisbility(false);
+  };
+
+  const goToNextModalStep = () => {
+    setModalStepIndex(modalStepIndex + 1);
+  };
+
   const handleSuggestSelect = newPlace => {
     if (!newPlace) {
       return;
@@ -42,16 +54,17 @@ const MapSearchInput = ({
 
     if (idx(newPlace, _ => _.gmaps.types.length)) {
       const newPlaceIsRestaurant = newPlace.gmaps.types.includes('restaurant');
-      setIsRestaurantStatus(newPlaceIsRestaurant);
-      if (!newPlaceIsRestaurant) {
-        return;
+
+      if (places.some(place => place.placeId === newPlace.placeId)) {
+        setExistenceOfLastFavoritedItem(true);
+      } else if (!newPlaceIsRestaurant) {
+        setExistenceOfLastFavoritedItem(false);
+        setModalVisbility(true);
+        setCustomPlace(newPlace);
       } else {
-        if (!places.some(place => place.placeId === newPlace.placeId)) {
-          setExistenceOfLastFavoritedItem(false);
-          handleMapInstance(map, maps, [...places, newPlace]);
-        } else {
-          setExistenceOfLastFavoritedItem(true);
-        }
+        setIsRestaurantStatus(newPlaceIsRestaurant);
+        setExistenceOfLastFavoritedItem(false);
+        handleMapInstance(map, maps, [...places, newPlace]);
       }
     }
   };
@@ -60,7 +73,11 @@ const MapSearchInput = ({
       <SearchInput
         ref={inputContainer}
         onFocus={handleFocus}
-        placeholder="Search for a restaurant..."
+        placeholder={
+          mapSearchFilterType.length
+            ? 'Search for a restaurant...'
+            : 'Search for an address...'
+        }
         onSuggestSelect={handleSuggestSelect}
         location={new google.maps.LatLng(BERLIN.lat, BERLIN.lng)}
         radius={2000}
@@ -80,6 +97,17 @@ const MapSearchInput = ({
             : 'Sorry this is not a restaurant. Please try your search again.'}
         </PopoverBody>
       </StyledPopover>
+      {modalVisible && (
+        <NewAddressModal
+          customPlace={customPlace}
+          handleMapInstance={handleMapInstance}
+          currentMapInfo={currentMapInfo}
+          modalStepIndex={modalStepIndex}
+          goToNextModalStep={goToNextModalStep}
+          places={places}
+          closeModal={closeModal}
+        />
+      )}
     </>
   );
 };
@@ -91,7 +119,7 @@ MapSearchInput.propTypes = {
     maps: object
   }),
   handleMapInstance: func,
-  mapSearchFilterType: array
+  mapSearchFilterType: oneOfType([array, string])
 };
 
 export default MapSearchInput;

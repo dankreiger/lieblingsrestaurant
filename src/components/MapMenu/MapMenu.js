@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { array, func, object } from 'prop-types';
+import { array, func, object, oneOfType, string } from 'prop-types';
 import { Row } from 'reactstrap';
 import MapSearchInput from 'components/MapSearchInput/MapSearchInput';
 import NavigationToggler from 'components/NavigationToggler/NavigationToggler';
@@ -21,7 +21,7 @@ const MapMenu = ({
 
   const [mapSearchFilterType, updateSearchFilterType] = useState([
     'establishment'
-  ]); // establishment type  as default;
+  ]); // establishment type as default;
   return (
     <Row noGutters>
       {favoritesPresent && (
@@ -58,7 +58,7 @@ const MapMenu = ({
 MapMenu.propTypes = {
   currentMapInfo: object,
   handleMapInstance: func,
-  places: array
+  places: oneOfType([array, string])
 };
 
 export default MapMenu;

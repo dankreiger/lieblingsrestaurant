@@ -5,7 +5,7 @@ import {
   NAVIGATION_HEIGHT,
   DEFAULT_TRANSITION_DURATION
 } from 'constants/index';
-import { fixedTopButton } from 'utils/styleVars';
+import { fixedTopButton } from 'utils/styleFunctions';
 
 export const InfoContainer = styled(Container)`
   transition: padding ${DEFAULT_TRANSITION_DURATION}ms;

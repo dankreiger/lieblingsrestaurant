@@ -12,7 +12,11 @@ describe('MapSearchInput', () => {
   describe('rendering', () => {
     test('renders as expected', () => {
       /* change to shallow when enzyme supports state hooks - use mount for now */
-      mapSearchInputComponent = mount(<MapSearchInput />);
+      /* google only accepts an array of types, but will not accept restaurant as a type for autocomplete */
+      /* for all types, nothing must be supplied, so an empty string is used here */
+      mapSearchInputComponent = mount(
+        <MapSearchInput mapSearchFilterType={['establishment']} />
+      );
       expect(mapSearchInputComponent.length).toBe(1);
       /* snapshots do not support React state hooks yet */
       // expect(mapSearchInputComponent).toMatchSnapshot();

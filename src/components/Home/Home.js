@@ -7,10 +7,9 @@ import { Col } from 'reactstrap';
 import SimpleMap from 'components/SimpleMap/SimpleMap';
 import { HomeContainer, OfflineMessageRow } from './Home.styles';
 import classNames from 'classnames';
-import { favoritesTypes } from 'reducers/types/favorites.types';
 import { navigationTypes } from 'reducers/types/navigation.types';
 
-const Home = ({ favorites, toggleNavigation, navigation }) => (
+const Home = ({ navigation }) => (
   <HomeContainer fluid className={classNames({ toggled: navigation.toggled })}>
     <Online>
       <SimpleMap />
@@ -24,13 +23,11 @@ const Home = ({ favorites, toggleNavigation, navigation }) => (
 );
 
 Home.propTypes = {
-  ...favoritesTypes,
   ...navigationTypes,
   toggleNavigation: func
 };
 
-const mapStateToProps = ({ favorites, navigation }) => ({
-  favorites,
+const mapStateToProps = ({ navigation }) => ({
   navigation
 });
 
