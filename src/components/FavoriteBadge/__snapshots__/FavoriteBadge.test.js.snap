@@ -102,7 +102,7 @@ ShallowWrapper {
   top: 10px;
   .badge {
     width: 60px;
-    fill: rgba(0,0,0,0.4);
+    fill: rgba(0, 0, 0, 0.4);
   }
 
   .badge text {
@@ -212,7 +212,7 @@ ShallowWrapper {
   top: 10px;
   .badge {
     width: 60px;
-    fill: rgba(0,0,0,0.4);
+    fill: rgba(0, 0, 0, 0.4);
   }
 
   .badge text {
