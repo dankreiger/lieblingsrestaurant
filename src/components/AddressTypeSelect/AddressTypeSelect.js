@@ -3,16 +3,16 @@ import { func } from 'prop-types';
 import { Input } from 'reactstrap';
 import { AddressTypeSelectWrapper } from './AddressTypeSelect.styles';
 
-const AddressTypeSelect = ({ updateSearchFilterType }) => {
+const AddressTypeSelect = ({ handleUpdateFilter }) => {
   return (
     <AddressTypeSelectWrapper>
       <Input
         type="select"
         name="addressTypeFilter"
         id="addressTypeFilter"
-        onChange={e => updateSearchFilterType(e.target.value)}
+        onChange={e => handleUpdateFilter(e.target.value)}
       >
-        <option value="establishments">Establishments</option>
+        <option value="establishment">Establishments</option>
         <option value="">All Addresses</option>
       </Input>
     </AddressTypeSelectWrapper>
@@ -20,7 +20,7 @@ const AddressTypeSelect = ({ updateSearchFilterType }) => {
 };
 
 AddressTypeSelect.propTypes = {
-  updateSearchFilterType: func
+  handleUpdateFilter: func
 };
 
 export default AddressTypeSelect;

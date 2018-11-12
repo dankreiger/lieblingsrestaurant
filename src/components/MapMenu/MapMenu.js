@@ -18,10 +18,13 @@ const MapMenu = ({
   places
 }) => {
   const favoritesPresent = favorites && favorites.length > 0;
-
   const [mapSearchFilterType, updateSearchFilterType] = useState([
     'establishment'
   ]); // establishment type as default;
+  const handleUpdateFilter = type => {
+    updateSearchFilterType(type.length ? ['establishment'] : '');
+  };
+
   return (
     <Row noGutters>
       {favoritesPresent && (
@@ -49,7 +52,7 @@ const MapMenu = ({
         md={{ size: 3, order: 2 }}
         lg={favoritesPresent ? 2 : 3}
       >
-        <AddressTypeSelect updateSearchFilterType={updateSearchFilterType} />
+        <AddressTypeSelect handleUpdateFilter={handleUpdateFilter} />
       </AddressTypeSelectCol>
     </Row>
   );
