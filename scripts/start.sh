@@ -3,7 +3,7 @@ YELLOW='\033[1;33m';CYAN='\033[0;36m';GREEN='\033[0;32m';RED='\033[0;31m';NC='\0
 
 clear
 
-if [ ! -f .env ]; then
+if [ ! -f .env.local ]; then
   echo;echo;
   printf "Enter your ${CYAN}api key${NC}, followed by [ENTER]:"
   read APIKEY
@@ -13,10 +13,10 @@ if [ ! -f .env ]; then
     printf "${RED}Google api key is unset${NC}. Please try ${GREEN}npm start${NC} or ${GREEN}yarn start${NC} again"
     echo;echo;echo;
   else
-    touch .env
+    touch .env.local
     FMT_APIKEY="$(echo "${APIKEY}" | tr -d '[:space:]')"
     # sed -i '' "s/YOUR_API_KEY/$APIKEY/g" public/index.html
-    echo "REACT_APP_RESTAURANT_API_KEY=${FMT_APIKEY}" > .env
+    echo "REACT_APP_RESTAURANT_API_KEY=${FMT_APIKEY}" > .env.local
     npm run start:scripts
   fi
 else

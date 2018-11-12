@@ -76,7 +76,7 @@ const FavoritedItem = ({
         )}
         <CardImgOverlay>
           <FavoriteBadge favoriteRanking={cardinalize(itemIndex + 1)} />
-          <CardTitle>
+          <CardTitle className="text-center">
             {favorite.customFavorite
               ? favorite.restaurantName
               : favorite.gmaps.name || favorite.description}
