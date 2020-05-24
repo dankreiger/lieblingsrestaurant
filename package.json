@@ -5,7 +5,7 @@
   "author": "Dan Kreiger <dan@dankreiger.com> (http://www.dankreiger.com)",
   "scripts": {
     "build": "react-scripts build",
-    "deploy": "npm run build && surge --project ./build --domain news-finder.surge.sh",
+    "deploy": "npm run build && surge --project ./build --domain ieblingsrestaurant.surge.sh/",
     "eject": "react-scripts eject",
     "start": "./scripts/start.sh",
     "start:scripts": "react-scripts start",
